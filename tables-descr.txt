@@ -1,0 +1,28 @@
+students: take course_events
+
+courses: represents generically a university course (lehrveranstaltung) with its
+constant information that remains valid over different semesters (its title, its
+type (vorlesung, übung or whatever), credit point number)
+
+course_events: represents an actual series of university course units taking
+place, with a concrete registration deadline
+
+course_units: describes parts of course_events, actual day-time combinations at
+which course_events take place
+
+course_types: a small number of course types or modes that define the
+rahmenbedingungen, such as 'lecture', 'seminar'
+
+students_attending_course_events: represents a student having registered for
+a specific course_event
+
+professors: teach course_events
+
+professors_doing_course_events: records which professor(s) is/are associated
+with which course events (which can be more than one for a course_event)
+
+rooms: ...
+
+gradings: represents final grades being given to students for specific courses
+(which may or may not be associated with course_events, because a student might
+have taken an exam without having attended a lecture, for example)
