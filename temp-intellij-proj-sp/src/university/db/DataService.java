@@ -1,4 +1,4 @@
-package university;
+package university.db;
 
 import university.model.*;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public class DataService {
     Connection connection;
 
-    DataService(String dbname) {
+    public DataService(String dbname) {
         _createConnection(dbname);
     }
 

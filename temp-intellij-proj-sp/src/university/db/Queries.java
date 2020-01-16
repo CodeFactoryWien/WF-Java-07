@@ -1,4 +1,4 @@
-package university;
+package university.db;
 
 public class Queries {
     static String getAll(String tableName) {
