@@ -13,4 +13,8 @@ public class CourseUnit {
         this.date = date;
         this.time = time;
     }
+
+    public Integer getId() { return id; }
+    public Date getDate() { return date; }
+    public Time getTime() { return time; }
 }
