@@ -32,8 +32,14 @@ public class DataService {
             List<Person> professors = runSimpleQuery(Queries.getProfsOfCourseEvent(cev.getId()), rset ->
                     new Person(rset.getInt(1), rset.getString(2), rset.getString(3),
                             rset.getString(4), rset.getString(5)));
+            List<Person> students = runSimpleQuery(Queries.getStudentsOfCourseEvent(cev.getId()), rset ->
+                    new Person(rset.getInt(1), rset.getString(2), rset.getString(3),
+                            rset.getString(4), rset.getString(5)));
+
             cev.getCourseUnits().addAll(courseUnits);
             cev.getProfessors().addAll(professors);
+            cev.getStudents().addAll(students);
+
             course.addCourseEvent(cev);
         }
     }
@@ -61,6 +67,18 @@ public class DataService {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public int runSimpleUpdate(String sql) {
+        try {
+            Statement s = connection.createStatement();
+            int changeCount = s.executeUpdate(sql);
+            s.close();
+            return changeCount;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 

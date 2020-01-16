@@ -21,6 +21,12 @@ public class Queries {
                 "where pe.course_event_id = " + eventId;
     }
 
+    static String getStudentsOfCourseEvent(Integer eventId) {
+        return "select student_id, student_name, student_surname, student_email, student_phone_number " +
+                "from students_attending_course_events se join students using (student_id) " +
+                "where se.course_event_id = " + eventId;
+    }
+
     static String getCourseUnitsOfCourseEvent(Integer eventId) {
         return "select course_unit_id, course_unit_date, course_unit_time from course_units where course_event_id = " + eventId;
     }
