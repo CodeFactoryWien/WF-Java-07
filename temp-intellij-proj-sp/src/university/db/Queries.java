@@ -11,8 +11,14 @@ public class Queries {
     }
 
     static String getCourseEventsOfCourse(Integer courseId) {
-        return "select course_event_id, room_name, registration_deadline" + // TODO: verify that `room_name` is correct
+        return "select course_event_id, room_name, registration_deadline " + // TODO: verify that `room_name` is correct
                 "from course_events join rooms using (room_id) where course_id = " + courseId;
+    }
+
+    static String getProfsOfCourseEvent(Integer eventId) {
+        return "select professor_id, professor_name, professor_surname, professor_email, professor_phone_number " +
+                "from professors_doing_course_events pe join professors using (professor_id) " +
+                "where pe.course_event_id = " + eventId;
     }
 
     static String getCourseUnitsOfCourseEvent(Integer eventId) {

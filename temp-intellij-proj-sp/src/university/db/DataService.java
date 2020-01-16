@@ -29,7 +29,11 @@ public class DataService {
         for (CourseEvent cev : courseEvents) {
             List<CourseUnit> courseUnits = runSimpleQuery(Queries.getCourseUnitsOfCourseEvent(cev.getId()), rset ->
                     new CourseUnit(rset.getInt(1), rset.getDate(2), rset.getTime(3)));
+            List<Person> professors = runSimpleQuery(Queries.getProfsOfCourseEvent(cev.getId()), rset ->
+                    new Person(rset.getInt(1), rset.getString(2), rset.getString(3),
+                            rset.getString(4), rset.getString(5)));
             cev.getCourseUnits().addAll(courseUnits);
+            cev.getProfessors().addAll(professors);
             course.addCourseEvent(cev);
         }
     }

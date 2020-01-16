@@ -20,4 +20,9 @@ public class Person {
     public String getSurname() { return surname; }
     public String getEmail() { return email; }
     public String getPhone() { return phone; }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s", surname, name);
+    }
 }

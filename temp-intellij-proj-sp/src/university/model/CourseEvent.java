@@ -9,6 +9,7 @@ public class CourseEvent {
     String roomName;
     Date registrationDeadline;
     List<CourseUnit> courseUnits = new ArrayList<>();
+    List<Person> professors = new ArrayList<>();
 
     public CourseEvent(Integer id, String roomName, Date registrationDeadline) {
         this.id = id;
@@ -20,4 +21,5 @@ public class CourseEvent {
     public String getRoomName() { return roomName; }
     public Date getRegistrationDeadline() { return registrationDeadline; }
     public List<CourseUnit> getCourseUnits() { return courseUnits; }
+    public List<Person> getProfessors() { return professors; }
 }
