@@ -1,4 +1,4 @@
-package university;
+package university.db;
 
 import university.model.*;
 
@@ -9,12 +9,8 @@ import java.util.List;
 public class DataService {
     Connection connection;
 
-    DataService(String dbname) {
+    public DataService(String dbname) {
         _createConnection(dbname);
-    }
-
-    public Course addCourseEventDataToCourse(Course course) {
-        List<CourseEvent> courseEvents = runSimpleQuery()
     }
 
     public List<Course> getCourses() {
@@ -25,6 +21,17 @@ public class DataService {
                         CourseType.valueOf(rset.getString(4).toUpperCase()),
                         rset.getString(5),
                         rset.getInt(6)));
+    }
+
+    public void addCourseEventDataToCourse(Course course) {
+        List<CourseEvent> courseEvents = runSimpleQuery(Queries.getCourseEventsOfCourse(course.getId()), rset ->
+                new CourseEvent(rset.getInt(1), rset.getString(2), rset.getDate(3)));
+        for (CourseEvent cev : courseEvents) {
+            List<CourseUnit> courseUnits = runSimpleQuery(Queries.getCourseUnitsOfCourseEvent(cev.getId()), rset ->
+                    new CourseUnit(rset.getInt(1), rset.getDate(2), rset.getTime(3)));
+            cev.getCourseUnits().addAll(courseUnits);
+            course.addCourseEvent(cev);
+        }
     }
 
     public List<Person> getProfessors() {

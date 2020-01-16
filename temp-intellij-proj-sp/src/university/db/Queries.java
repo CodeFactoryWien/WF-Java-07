@@ -1,4 +1,4 @@
-package university;
+package university.db;
 
 public class Queries {
     static String getAll(String tableName) {
@@ -11,8 +11,12 @@ public class Queries {
     }
 
     static String getCourseEventsOfCourse(Integer courseId) {
-        return "select course_event_id,  from course_events join rooms using (room_id) where course_id = " +
-                courseId;
+        return "select course_event_id, room_name, registration_deadline" + // TODO: verify that `room_name` is correct
+                "from course_events join rooms using (room_id) where course_id = " + courseId;
+    }
+
+    static String getCourseUnitsOfCourseEvent(Integer eventId) {
+        return "select course_unit_id, course_unit_date, course_unit_time from course_units where course_event_id = " + eventId;
     }
 
     private Queries() {};

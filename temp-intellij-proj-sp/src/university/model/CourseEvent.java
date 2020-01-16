@@ -15,4 +15,9 @@ public class CourseEvent {
         this.roomName = roomName;
         this.registrationDeadline = registrationDeadline;
     }
+
+    public Integer getId() { return id; }
+    public String getRoomName() { return roomName; }
+    public Date getRegistrationDeadline() { return registrationDeadline; }
+    public List<CourseUnit> getCourseUnits() { return courseUnits; }
 }
