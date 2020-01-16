@@ -13,7 +13,6 @@ import java.sql.Statement;
 
 public class Main extends Application {
 
-
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -30,13 +29,8 @@ public class Main extends Application {
         con.close();
         st.close();*/
 
-        String str = "hello-123";
-
-        String newStr = str.split("-")[0];
-        System.out.println(newStr);
-
-        AnchorPane logInPane = (AnchorPane) FXMLLoader.load(getClass().getResource("logInFirstScene.fxml"));
-        primaryStage.setTitle("Hello World");
+        AnchorPane logInPane = FXMLLoader.load(getClass().getResource("logInFirstScene.fxml"));
+        primaryStage.setTitle("University of Purrington");
         primaryStage.setScene(new Scene(logInPane, 600, 400));
         primaryStage.show();
     }

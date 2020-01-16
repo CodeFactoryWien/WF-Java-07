@@ -15,6 +15,7 @@ import java.sql.*;
 import java.io.IOException;
 public class Controller {
     ResultSet searchForUser = new CreateConnection().resultSet("SELECT * FROM teachers");
+    String profNameOnly;
     @FXML
     private TextField userNameTextField;
 
@@ -25,33 +26,36 @@ public class Controller {
     }
 
     @FXML
-    void onClickAction(ActionEvent event){
-        logInButton.setOnAction(actionEvent-> {
+    void onClickAction(ActionEvent event) {
+        logInButton.setOnAction(actionEvent -> {
             String getID = userNameTextField.getText().trim();
 
             System.out.println(getID);
             try {
                 while (searchForUser.next()) {
-                    int a = searchForUser.getInt(1);
-/*                    String name = searchForUser.getString(3);*/
-                if (getID.substring(getID.length() - 1).equals(String.valueOf(a))) {
-                    Parent secondWindow = null;
-                    try {
-                        secondWindow = FXMLLoader.load(getClass().getResource("menuSecondScene.fxml"));
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    int profID = searchForUser.getInt(1);
+                    String profName = getID;
+                    String[] profNameParts = getID.split("-");
+                    profNameOnly = profNameParts[0];
+                    if (getID.substring(getID.length() - 1).equals(String.valueOf(profID))) {
+                        Parent secondWindow = null;
+                        try {
+                            secondWindow = FXMLLoader.load(getClass().getResource("menuSecondScene.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Scene secondScene = new Scene(secondWindow);
+                        Stage secondStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        secondStage.setScene(secondScene);
+                        secondStage.show();
                     }
-                    Scene secondScene = new Scene(secondWindow);
-                    Stage secondStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    secondStage.setScene(secondScene);
-                    secondStage.show();
                 }
-            }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         });
     }
+
     @FXML
     private TreeView<?> exampleTreeView;
 }
