@@ -36,4 +36,9 @@ public class Course {
     public void addCourseEvent(CourseEvent courseEvent) {
         courseEvents.add(courseEvent);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d/%s %s %s", id, moduleCode, type.getAbbrev(), title);
+    }
 }

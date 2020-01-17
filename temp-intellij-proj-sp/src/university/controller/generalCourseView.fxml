@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="university.controller.GeneralCourseView" >
+
+    <ListView fx:id="courseListView"/>
+    <VBox>
+        <GridPane vgap="10" hgap="5">
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="0">ID:</Label>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="1">Type:</Label>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="2">Module:</Label>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="3">Credit Points:</Label>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="4">Description:</Label>
+
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="idField"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="typeField"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="moduleField"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="pointsField"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="descrField"/>
+        </GridPane>
+        <Label>Course Events:</Label>
+        <ListView fx:id=""/>
+    </VBox>
+</HBox>
