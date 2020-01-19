@@ -10,11 +10,11 @@ public class DataService {
     Connection connection;
 
     public DataService(String dbname) {
-        _createConnection(dbname);
+        createConnection(dbname);
     }
 
     public List<Course> getCourses() {
-        return runSimpleQuery(Queries.getCoursesData(),
+        return runSimpleQuery(ReadQueries.getCoursesData(),
                 rset -> new Course(rset.getInt(1),
                         rset.getString(2),
                         rset.getString(3),
@@ -24,15 +24,17 @@ public class DataService {
     }
 
     public void addCourseEventDataToCourse(Course course) {
-        List<CourseEvent> courseEvents = runSimpleQuery(Queries.getCourseEventsOfCourse(course.getId()), rset ->
+        course.getCourseEvents().clear(); // fixes getting duplicates when clicking on same course again - TODO: better fix?
+
+        List<CourseEvent> courseEvents = runSimpleQuery(ReadQueries.getCourseEventsOfCourse(course.getId()), rset ->
                 new CourseEvent(rset.getInt(1), rset.getString(2), rset.getDate(3)));
         for (CourseEvent cev : courseEvents) {
-            List<CourseUnit> courseUnits = runSimpleQuery(Queries.getCourseUnitsOfCourseEvent(cev.getId()), rset ->
+            List<CourseUnit> courseUnits = runSimpleQuery(ReadQueries.getCourseUnitsOfCourseEvent(cev.getId()), rset ->
                     new CourseUnit(rset.getInt(1), rset.getDate(2), rset.getTime(3)));
-            List<Person> professors = runSimpleQuery(Queries.getProfsOfCourseEvent(cev.getId()), rset ->
+            List<Person> professors = runSimpleQuery(ReadQueries.getProfsOfCourseEvent(cev.getId()), rset ->
                     new Person(rset.getInt(1), rset.getString(2), rset.getString(3),
                             rset.getString(4), rset.getString(5)));
-            List<Person> students = runSimpleQuery(Queries.getStudentsOfCourseEvent(cev.getId()), rset ->
+            List<Person> students = runSimpleQuery(ReadQueries.getStudentsOfCourseEvent(cev.getId()), rset ->
                     new Person(rset.getInt(1), rset.getString(2), rset.getString(3),
                             rset.getString(4), rset.getString(5)));
 
@@ -45,7 +47,7 @@ public class DataService {
     }
 
     public List<Person> getProfessors() {
-        return runSimpleQuery(Queries.getAll("professors"), rset ->
+        return runSimpleQuery(ReadQueries.getAll("professors"), rset ->
                 new Person(rset.getInt(1),
                         rset.getString(2),
                         rset.getString(3),
@@ -53,7 +55,20 @@ public class DataService {
                         rset.getString(5)));
     }
 
-    <T> List<T> runSimpleQuery(String query, FunWithSql<ResultSet, T> resultSetElmtProcessor) {
+    public int updateCourseDescription(Integer courseId, String value) {
+        return runParameterizedUpdate(WriteQueries.changeRowFieldValueAtId("courses",
+                "course_description", "course_id"),
+                    ps -> {
+                        ps.setString(1, value);
+                        ps.setInt(2, courseId);
+                    });
+    }
+
+    public void insertProfessorToCourseEvent(Integer professorId, Integer courseEventId) {
+
+    }
+
+    private <T> List<T> runSimpleQuery(String query, FunWithSql<ResultSet, T> resultSetElmtProcessor) {
         try {
             Statement s = connection.createStatement();
             ResultSet r = s.executeQuery(query);
@@ -70,7 +85,7 @@ public class DataService {
         }
     }
 
-    public int runSimpleUpdate(String sql) {
+    private int runSimpleUpdate(String sql) {
         try {
             Statement s = connection.createStatement();
             int changeCount = s.executeUpdate(sql);
@@ -82,20 +97,41 @@ public class DataService {
         }
     }
 
+    private int runParameterizedUpdate(String paramSql, ProcWithSql<PreparedStatement> prepStmtProcessor) {
+        try {
+            PreparedStatement ps = connection.prepareStatement(paramSql);
+            prepStmtProcessor.apply(ps);
+
+            System.out.print("executing write-query: ");
+            System.out.println(ps);
+            int changeCount = ps.executeUpdate();
+
+            ps.close();
+            return changeCount;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public void close() {
         try {
+            System.out.print("Closing database connection...");
             connection.close();
+            System.out.println("...done.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void _createConnection(String dbname) {
+    private void createConnection(String dbname) {
         try {
+            System.out.print("Connecting to database...");
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/" + dbname,
                     "root",
                     "");
+            System.out.println("...done.");
         } catch (SQLException e) {
             e.printStackTrace();
         }

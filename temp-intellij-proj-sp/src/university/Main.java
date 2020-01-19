@@ -1,16 +1,12 @@
 package university;
 
-import com.sun.javafx.image.impl.General;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import university.controller.GeneralCourseView;
+import university.controller.CourseView;
 import university.db.DataService;
-import university.model.Course;
-
-import javax.naming.ldap.Control;
 
 public class Main extends Application {
 
@@ -19,9 +15,9 @@ public class Main extends Application {
         var db = new DataService("university");
         primaryStage.setOnCloseRequest(e -> db.close());
 
-        FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("controller/generalCourseView.fxml"));
+        FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("controller/CourseView.fxml"));
         Parent     gcViewRoot = gcViewLoader.load();
-        GeneralCourseView gcViewController = gcViewLoader.getController();
+        CourseView gcViewController = gcViewLoader.getController();
 
         gcViewController.setDb(db);
         gcViewController.loadData();

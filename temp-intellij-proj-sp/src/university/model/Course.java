@@ -28,6 +28,9 @@ public class Course {
     public CourseType getType() { return type; }
     public String getModuleCode() { return moduleCode; }
     public Integer getCreditPoints() { return creditPoints; }
+    public List<CourseEvent> getCourseEvents() { return courseEvents; }
+
+    public void setDescription(String description) { this.description = description; }
 
     public void setCourseEvents(List<CourseEvent> courseEvents) {
         this.courseEvents = courseEvents;

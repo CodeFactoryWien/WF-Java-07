@@ -1,6 +1,6 @@
 package university.db;
 
-public class Queries {
+public class ReadQueries {
     static String getAll(String tableName) {
         return "select * from " + tableName;
     }
@@ -31,5 +31,5 @@ public class Queries {
         return "select course_unit_id, course_unit_date, course_unit_time from course_units where course_event_id = " + eventId;
     }
 
-    private Queries() {};
+    private ReadQueries() {};
 }
