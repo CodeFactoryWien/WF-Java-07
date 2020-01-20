@@ -6,16 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import university.db.DataService;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        var db = new DataService("university_application?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
+        primaryStage.setOnCloseRequest(e -> db.close());
         Parent root = FXMLLoader.load(getClass().getResource("logInFirstScene.fxml"));
         Image icon = new Image(getClass().getResourceAsStream("/images/mickey_gryffindor.png"));
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("University of Magic and Higher Sorcery");
-        primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

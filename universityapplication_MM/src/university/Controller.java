@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import university.db.DataService;
 
 import javax.swing.*;
 import java.lang.reflect.InvocationTargetException;
@@ -37,10 +38,15 @@ public class Controller {
     @FXML
     void logInAction(ActionEvent event) throws Exception { //TODO: Make a functioning try / catch statement.
         String[] split = logInTextField.getText().split("_");
-        String firstName = split[0];
-        String lastName = split[1];
-            ResultSet searchForUser = new CreateConnection().resultSet("SELECT * FROM teachers WHERE name = " +
-                                                            "'" + firstName + "' AND surname = '" + lastName + "'");
+        if (!( split[0].equals(""))) {
+            String firstName = split[0];
+            String lastName = split[1];
+
+            DataService ds = new DataService("university_application?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
+            Connection connection = ds.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet searchForUser = statement.executeQuery("SELECT * FROM professors WHERE professor_name = " +
+                    "'" + firstName + "' AND professor_surname = '" + lastName + "'");
             try {
                 if (searchForUser.next()) {
                     Parent secondWindow = FXMLLoader.load(getClass().getResource("menuSecondScene.fxml"));
@@ -48,14 +54,15 @@ public class Controller {
                     Stage secondStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     secondStage.setScene(secondScene);
                     secondStage.show();
-                } else if (logInTextField.getText() == null || logInTextField.getText().trim().length() == 0){
-                    System.out.println("textfield is empty");
                 } else {
                     System.out.println("not connected!");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }else {
+            System.out.println("no user name found");
+        }
     }
 
     //Second scene - Nodes
