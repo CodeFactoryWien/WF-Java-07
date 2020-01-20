@@ -4,8 +4,15 @@ public class WriteQueries {
     /**
      * Returns a query string for PreparedStatement taking two SQL params: course event id, professor id
      */
-    static String insertProfDoingEvent() {
-        return "insert into professors_doing_course_events values (?, ?)";
+    static String insertProfDoingEvent() { return insertMtoM("professors_doing_course_events"); }
+
+    /**
+     * Returns a query string for PreparedStatement taking two SQL params: student id, course event id
+     */
+    static String insertStudDoingEvent() { return insertMtoM("students_attending_course_events"); }
+
+    static String insertMtoM(String tableName) {
+        return String.format("insert into %s values (?, ?)", tableName);
     }
 
     /**

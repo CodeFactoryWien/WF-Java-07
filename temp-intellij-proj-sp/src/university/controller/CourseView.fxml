@@ -56,7 +56,11 @@
             <Button fx:id="addProfBtn">Add New</Button>
         </HBox>
         <ListView fx:id="profsTeachingEventListView"/>
-        <Label>Students registered as attending:</Label>
+        <HBox>
+            <Label fx:id="studsAtEventListLabel">Students registered as attending:</Label>
+            <Button fx:id="rmStudBtn">Remove Selected</Button>
+            <Button fx:id="addStudBtn">Add New</Button>
+        </HBox>
         <ListView fx:id="studsAttendingEventListView"/>
     </VBox>
 </SplitPane>

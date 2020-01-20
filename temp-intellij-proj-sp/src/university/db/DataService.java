@@ -62,6 +62,11 @@ public class DataService {
                 new Person(rset.getInt(1), rset.getString(2), rset.getString(3)));
     }
 
+    public List<Person> getStudsNotDoingEvent(Integer eventId) {
+        return runSimpleQuery(ReadQueries.getStudentsNotAttendingEvent(eventId), rset ->
+                new Person(rset.getInt(1), rset.getString(2), rset.getString(3)));
+    }
+
     public int updateCourseDescription(Integer courseId, String value) {
         return runParameterizedUpdate(WriteQueries.changeRowFieldValueAtId("courses",
                 "course_description", "course_id"),
@@ -83,6 +88,22 @@ public class DataService {
                 "professors_doing_course_events", "professor_id", "course_event_id"),
                 ps -> {
                     ps.setInt(1, profId);
+                    ps.setInt(2, eventId);
+                });
+    }
+
+    public int addStudToCourseEvent(Integer studId, Integer eventId) {
+        return runParameterizedUpdate(WriteQueries.insertStudDoingEvent(), ps -> {
+            ps.setInt(1, studId);
+            ps.setInt(2, eventId);
+        });
+    }
+
+    public int deleteStudFromCourseEvent(Integer studId, Integer eventId) {
+        return runParameterizedUpdate(WriteQueries.deleteRowByTwoCols(
+                "students_attending_course_events", "student_id", "course_event_id"),
+                ps -> {
+                    ps.setInt(1, studId);
                     ps.setInt(2, eventId);
                 });
     }
