@@ -2,23 +2,21 @@ package university;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-        AnchorPane logInPane = FXMLLoader.load(getClass().getResource("logInFirstScene.fxml"));
-        primaryStage.setTitle("University of Purrington");
-        primaryStage.setScene(new Scene(logInPane, 600, 400));
+        Parent root = FXMLLoader.load(getClass().getResource("logInFirstScene.fxml"));
+        Image icon = new Image(getClass().getResourceAsStream("/images/mickey_gryffindor.png"));
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("University of Magic and Higher Sorcery");
+        primaryStage.setResizable(false);
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
