@@ -1,14 +1,13 @@
 package university.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import university.db.DataService;
 import university.model.Course;
 import university.model.CourseEvent;
 import university.model.Person;
+
+import java.util.List;
 
 public class CourseView {
     @FXML ListView<Course> courseListView;
@@ -27,6 +26,9 @@ public class CourseView {
     @FXML TextField courseEventRegDateField;
     @FXML TextField courseEventStartDateField;
     @FXML TextField courseEventEndDateField;
+    @FXML Button rmProfBtn;
+    @FXML Button addProfBtn;
+    @FXML Label profsAtEventListLabel;
     @FXML ListView<Person> profsTeachingEventListView;
     @FXML ListView<Person> studsAttendingEventListView;
 
@@ -42,6 +44,7 @@ public class CourseView {
         connectCourseListToCourseDetails();
         connectEventListToEventDetails();
         activateCourseDetailButtons();
+        activateEventDetailButtons();
     }
 
     private void connectCourseListToCourseDetails() {
@@ -97,6 +100,54 @@ public class CourseView {
                     newDescr);
             courseListView.getSelectionModel().getSelectedItem().setDescription(newDescr);
             courseListView.refresh();
+        });
+    }
+
+    private void activateEventDetailButtons() {
+        rmProfBtnActivateRemoveMode();
+        addProfBtn.setOnAction(e -> enterAddProfMode());
+    }
+
+    private void enterAddProfMode() {
+        CourseEvent selectedCourseEvent = courseEventsListView.getSelectionModel().getSelectedItem();
+        List<Person> profsNotDoingEvent = db.getProfsNotDoingEvent(selectedCourseEvent.getId());
+
+        profsAtEventListLabel.setText("Professors available for selection: ");
+        addProfBtn.setText("Add Selected");
+        rmProfBtn.setText("Abort");
+
+        profsTeachingEventListView.getItems().setAll(profsNotDoingEvent);
+
+        addProfBtn.setOnAction(e -> {
+            Person selectedProf = profsTeachingEventListView.getSelectionModel().getSelectedItem();
+            if (selectedProf != null) {
+                db.addProfToCourseEvent(selectedProf.getId(), selectedCourseEvent.getId());
+                selectedCourseEvent.getProfessors().add(selectedProf);
+                exitAddProfMode();
+            }
+        });
+        rmProfBtn.setOnAction(e -> exitAddProfMode());
+    }
+
+    private void exitAddProfMode() {
+        profsAtEventListLabel.setText("Professors registered as teaching: ");
+        addProfBtn.setText("Add New");
+        rmProfBtn.setText("Remove Selected");
+
+        profsTeachingEventListView.getItems().setAll(
+                courseEventsListView.getSelectionModel().getSelectedItem().getProfessors());
+
+        rmProfBtnActivateRemoveMode();
+        addProfBtn.setOnAction(e -> enterAddProfMode());
+    }
+
+    private void rmProfBtnActivateRemoveMode() {
+        rmProfBtn.setOnAction(e -> {
+            Person selectedProf = profsTeachingEventListView.getSelectionModel().getSelectedItem();
+            CourseEvent selectedCourseEvent = courseEventsListView.getSelectionModel().getSelectedItem();
+            db.deleteProfFromCourseEvent(selectedProf.getId(), selectedCourseEvent.getId());
+            selectedCourseEvent.getProfessors().remove(selectedProf);
+            profsTeachingEventListView.getItems().remove(selectedProf);
         });
     }
 

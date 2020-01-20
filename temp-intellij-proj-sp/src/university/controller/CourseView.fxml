@@ -50,7 +50,11 @@
             <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="courseEventStartDateField"/>
             <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="courseEventEndDateField"/>
         </GridPane>
-        <Label>Professors registered as teaching:</Label>
+        <HBox>
+            <Label fx:id="profsAtEventListLabel">Professors registered as teaching: </Label>
+            <Button fx:id="rmProfBtn">Remove Selected</Button>
+            <Button fx:id="addProfBtn">Add New</Button>
+        </HBox>
         <ListView fx:id="profsTeachingEventListView"/>
         <Label>Students registered as attending:</Label>
         <ListView fx:id="studsAttendingEventListView"/>

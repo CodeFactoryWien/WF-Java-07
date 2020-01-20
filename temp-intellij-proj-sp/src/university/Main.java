@@ -12,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        var db = new DataService("university");
+        var db = new DataService("university", "root", "");
         primaryStage.setOnCloseRequest(e -> db.close());
 
         FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("controller/CourseView.fxml"));
