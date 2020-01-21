@@ -12,9 +12,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        var db = new DataService("university_application?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
+        var db = new DataService("university?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
         primaryStage.setOnCloseRequest(e -> db.close());
-        Parent root = FXMLLoader.load(getClass().getResource("logInFirstScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("controller/LogInView.fxml"));
         Image icon = new Image(getClass().getResourceAsStream("/images/mickey_gryffindor.png"));
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("University of Magic and Higher Sorcery");

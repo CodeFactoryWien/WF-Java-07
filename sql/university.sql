@@ -6,7 +6,8 @@
 -- Erstellungszeit: 21. Jan 2020 um 10:26
 -- Server-Version: 10.4.10-MariaDB
 -- PHP-Version: 7.3.12
-
+CREATE DATABASE  IF NOT EXISTS `university` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `university`;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -19,7 +20,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `university1`
+-- Datenbank: `university`
 --
 
 -- --------------------------------------------------------

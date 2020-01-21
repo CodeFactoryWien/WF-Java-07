@@ -1,14 +1,13 @@
 package university.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import university.db.DataService;
 import university.model.Course;
 import university.model.CourseEvent;
 import university.model.Person;
+
+import java.util.List;
 
 public class CourseView {
     @FXML ListView<Course> courseListView;
@@ -27,7 +26,15 @@ public class CourseView {
     @FXML TextField courseEventRegDateField;
     @FXML TextField courseEventStartDateField;
     @FXML TextField courseEventEndDateField;
+
+    @FXML Label profsAtEventListLabel;
+    @FXML Button rmProfBtn;
+    @FXML Button addProfBtn;
     @FXML ListView<Person> profsTeachingEventListView;
+
+    @FXML Label studsAtEventListLabel;
+    @FXML Button rmStudBtn;
+    @FXML Button addStudBtn;
     @FXML ListView<Person> studsAttendingEventListView;
 
     DataService db;
@@ -42,6 +49,7 @@ public class CourseView {
         connectCourseListToCourseDetails();
         connectEventListToEventDetails();
         activateCourseDetailButtons();
+        activateEventDetailButtons();
     }
 
     private void connectCourseListToCourseDetails() {
@@ -97,6 +105,104 @@ public class CourseView {
                     newDescr);
             courseListView.getSelectionModel().getSelectedItem().setDescription(newDescr);
             courseListView.refresh();
+        });
+    }
+
+    private void activateEventDetailButtons() {
+        rmProfBtnActivateRemoveMode();
+        addProfBtn.setOnAction(e -> enterAddProfMode());
+
+        rmStudBtnActivateRemoveMode();
+        addStudBtn.setOnAction(e -> enterAddStudMode());
+    }
+
+    private void enterAddProfMode() {
+        CourseEvent selectedCourseEvent = courseEventsListView.getSelectionModel().getSelectedItem();
+        List<Person> profsNotDoingEvent = db.getProfsNotDoingEvent(selectedCourseEvent.getId());
+
+        profsAtEventListLabel.setText("Professors available for selection: ");
+        addProfBtn.setText("Add Selected");
+        rmProfBtn.setText("Abort");
+
+        profsTeachingEventListView.getItems().setAll(profsNotDoingEvent);
+
+        addProfBtn.setOnAction(e -> {
+            Person selectedProf = profsTeachingEventListView.getSelectionModel().getSelectedItem();
+            if (selectedProf != null) {
+                db.addProfToCourseEvent(selectedProf.getId(), selectedCourseEvent.getId());
+                selectedCourseEvent.getProfessors().add(selectedProf);
+                exitAddProfMode();
+            }
+        });
+        rmProfBtn.setOnAction(e -> exitAddProfMode());
+    }
+
+    private void exitAddProfMode() {
+        profsAtEventListLabel.setText("Professors registered as teaching: ");
+        addProfBtn.setText("Add New");
+        rmProfBtn.setText("Remove Selected");
+
+        profsTeachingEventListView.getItems().setAll(
+                courseEventsListView.getSelectionModel().getSelectedItem().getProfessors());
+
+        rmProfBtnActivateRemoveMode();
+        addProfBtn.setOnAction(e -> enterAddProfMode());
+    }
+
+    private void rmProfBtnActivateRemoveMode() {
+        rmProfBtn.setOnAction(e -> {
+            Person selectedProf = profsTeachingEventListView.getSelectionModel().getSelectedItem();
+            if (selectedProf != null) {
+                CourseEvent selectedCourseEvent = courseEventsListView.getSelectionModel().getSelectedItem();
+                db.deleteProfFromCourseEvent(selectedProf.getId(), selectedCourseEvent.getId());
+                selectedCourseEvent.getProfessors().remove(selectedProf);
+                profsTeachingEventListView.getItems().remove(selectedProf);
+            }
+        });
+    }
+
+    private void enterAddStudMode() {
+        CourseEvent selectedCourseEvent = courseEventsListView.getSelectionModel().getSelectedItem();
+        List<Person> studsNotDoingEvent = db.getStudsNotDoingEvent(selectedCourseEvent.getId());
+
+        studsAtEventListLabel.setText("Students available for selection: ");
+        addStudBtn.setText("Add Selected");
+        rmStudBtn.setText("Abort");
+
+        studsAttendingEventListView.getItems().setAll(studsNotDoingEvent);
+
+        addStudBtn.setOnAction(e -> {
+            Person selectedStud = studsAttendingEventListView.getSelectionModel().getSelectedItem();
+            if (selectedStud != null) {
+                db.addStudToCourseEvent(selectedStud.getId(), selectedCourseEvent.getId());
+                selectedCourseEvent.getStudents().add(selectedStud);
+                exitAddStudMode();
+            }
+        });
+        rmStudBtn.setOnAction(e -> exitAddStudMode());
+    }
+
+    private void exitAddStudMode() {
+        studsAtEventListLabel.setText("Students registered as attending: ");
+        addStudBtn.setText("Add New");
+        rmStudBtn.setText("Remove Selected");
+
+        studsAttendingEventListView.getItems().setAll(
+                courseEventsListView.getSelectionModel().getSelectedItem().getStudents());
+
+        rmStudBtnActivateRemoveMode();
+        addStudBtn.setOnAction(e -> enterAddStudMode());
+    }
+
+    private void rmStudBtnActivateRemoveMode() {
+        rmStudBtn.setOnAction(e -> {
+            Person selectedStud = studsAttendingEventListView.getSelectionModel().getSelectedItem();
+            if (selectedStud != null) {
+                CourseEvent selectedCourseEvent = courseEventsListView.getSelectionModel().getSelectedItem();
+                db.deleteStudFromCourseEvent(selectedStud.getId(), selectedCourseEvent.getId());
+                selectedCourseEvent.getStudents().remove(selectedStud);
+                studsAttendingEventListView.getItems().remove(selectedStud);
+            }
         });
     }
 

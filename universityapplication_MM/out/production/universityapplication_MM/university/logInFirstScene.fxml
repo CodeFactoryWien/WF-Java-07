@@ -9,7 +9,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="university.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="university.controller.MenuController">
    <children>
       <Button fx:id="logInButton" layoutX="249.0" layoutY="309.0" mnemonicParsing="false" onAction="#onClickAction" prefHeight="31.0" prefWidth="100.0" style="-fx-text-fill: #ffd966; -fx-background-color: #1a1a1a; -fx-border-color: #ffd966;" text="Log In" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="199.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />

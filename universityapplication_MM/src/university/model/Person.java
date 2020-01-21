@@ -7,6 +7,12 @@ public class Person {
     private String email;
     private String phone;
 
+    public Person(Integer id, String name, String surname) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+    }
+
     public Person(Integer id, String name, String surname, String email, String phone) {
         this.id = id;
         this.name = name;

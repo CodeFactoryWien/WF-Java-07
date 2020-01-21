@@ -31,6 +31,19 @@ public class ReadQueries {
         return "select course_unit_id, course_unit_date, course_unit_time from course_units where course_event_id = " + eventId;
     }
 
+    static String getProfessorsNotTeachingEvent(Integer eventId) {
+        return "select professor_id, professor_name, professor_surname from professors p " +
+               "where not exists (select 1 from professors_doing_course_events x " +
+                                 "where course_event_id = " + Integer.toString(eventId) + " " +
+                                 "and x.professor_id = p.professor_id)";
+    }
+
+    static String getStudentsNotAttendingEvent(Integer eventId) {
+        return "select student_id, student_name, student_surname from students s " +
+                "where not exists (select 1 from students_attending_course_events x " +
+                                  "where course_event_id = " + Integer.toString(eventId) + " " +
+                                  "and x.student_id = s.student_id)";
+    }
 
     private ReadQueries() {};
 }

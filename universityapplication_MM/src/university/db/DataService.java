@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataService {
-    public Connection getConnection() { return connection; }
-
     Connection connection;
 
-    public DataService(String dbname, String user, String pass) {
-        createConnection(dbname, user, pass);
+    public Connection getConnection() { return connection; }
+
+    public DataService(String dbname, String username, String password) {
+        createConnection(dbname, username, password);
     }
 
     public List<Course> getCourses() {
@@ -56,6 +56,24 @@ public class DataService {
                         rset.getString(4),
                         rset.getString(5)));
     }
+    public List<Person> getStudents() {
+        return runSimpleQuery(ReadQueries.getAll("students"), rset ->
+                new Person(rset.getInt(1),
+                        rset.getString(2),
+                        rset.getString(3),
+                        rset.getString(4),
+                        rset.getString(5)));
+    }
+
+    public List<Person> getProfsNotDoingEvent(Integer eventId) {
+        return runSimpleQuery(ReadQueries.getProfessorsNotTeachingEvent(eventId), rset ->
+                new Person(rset.getInt(1), rset.getString(2), rset.getString(3)));
+    }
+
+    public List<Person> getStudsNotDoingEvent(Integer eventId) {
+        return runSimpleQuery(ReadQueries.getStudentsNotAttendingEvent(eventId), rset ->
+                new Person(rset.getInt(1), rset.getString(2), rset.getString(3)));
+    }
 
     public int updateCourseDescription(Integer courseId, String value) {
         return runParameterizedUpdate(WriteQueries.changeRowFieldValueAtId("courses",
@@ -66,8 +84,36 @@ public class DataService {
                     });
     }
 
-    public void insertProfessorToCourseEvent(Integer professorId, Integer courseEventId) {
+    public int addProfToCourseEvent(Integer profId, Integer eventId) {
+        return runParameterizedUpdate(WriteQueries.insertProfDoingEvent(), ps -> {
+            ps.setInt(1, eventId);
+            ps.setInt(2, profId);
+        });
+    }
 
+    public int deleteProfFromCourseEvent(Integer profId, Integer eventId) {
+        return runParameterizedUpdate(WriteQueries.deleteRowByTwoCols(
+                "professors_doing_course_events", "professor_id", "course_event_id"),
+                ps -> {
+                    ps.setInt(1, profId);
+                    ps.setInt(2, eventId);
+                });
+    }
+
+    public int addStudToCourseEvent(Integer studId, Integer eventId) {
+        return runParameterizedUpdate(WriteQueries.insertStudDoingEvent(), ps -> {
+            ps.setInt(1, studId);
+            ps.setInt(2, eventId);
+        });
+    }
+
+    public int deleteStudFromCourseEvent(Integer studId, Integer eventId) {
+        return runParameterizedUpdate(WriteQueries.deleteRowByTwoCols(
+                "students_attending_course_events", "student_id", "course_event_id"),
+                ps -> {
+                    ps.setInt(1, studId);
+                    ps.setInt(2, eventId);
+                });
     }
 
     private <T> List<T> runSimpleQuery(String query, FunWithSql<ResultSet, T> resultSetElmtProcessor) {
@@ -126,12 +172,11 @@ public class DataService {
         }
     }
 
-    private void createConnection(String dbname, String user, String pass) {
+    private void createConnection(String dbname, String username, String password) {
         try {
             System.out.print("Connecting to database...");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/" + dbname,
-                    user, pass);
+                    "jdbc:mysql://localhost:3306/" + dbname, username, password);
             System.out.println("...done.");
         } catch (SQLException e) {
             e.printStackTrace();
