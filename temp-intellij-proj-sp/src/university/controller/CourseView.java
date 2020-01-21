@@ -10,6 +10,7 @@ import university.model.Person;
 import java.util.List;
 
 public class CourseView {
+    @javafx.fxml.FXML
     @FXML ListView<Course> courseListView;
 
     @FXML TextField courseIdField;

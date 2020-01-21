@@ -11,7 +11,6 @@ import java.util.List;
 
 public class CourseView {
     @FXML ListView<Course> courseListView;
-
     @FXML TextField courseIdField;
     @FXML TextField courseTypeField;
     @FXML TextField courseModuleField;

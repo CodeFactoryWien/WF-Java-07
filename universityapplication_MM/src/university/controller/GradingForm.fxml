@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<SplitPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="university.controller.GradingForm"
+           dividerPositions="0.33f, 0.66f"
+           prefHeight="800" prefWidth="1200">
+
+    <ListView fx:id="courseListView"/>
+    <ListView fx:id="studentListView"/>
+    <VBox>
+        <GridPane>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="0">Selected student: </Label>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="1">Selected course: </Label>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="2">Grade: </Label>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="3">Grading comment: </Label>
+
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="0" editable="false" fx:id="studNameField"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" editable="false" fx:id="courseNameField"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="gradeValueField"/>
+            <TextArea  GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="gradeCommentField"
+                       prefWidth="200" prefHeight="200" wrapText="true"/>
+        </GridPane>
+
+        <HBox>
+            <Button fx:id="clearBtn">Clear</Button>
+            <Button fx:id="restoreBtn">Restore</Button>
+            <Button fx:id="saveBtn">Save</Button>
+        </HBox>
+        <Label visible="false" fx:id="formErrorMsg">Invalid form data! Grade value must be a number in the range 0 to 5.</Label>
+    </VBox>
+</SplitPane>

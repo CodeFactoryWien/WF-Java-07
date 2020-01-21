@@ -56,6 +56,7 @@ public class DataService {
                         rset.getString(4),
                         rset.getString(5)));
     }
+
     public List<Person> getStudents() {
         return runSimpleQuery(ReadQueries.getAll("students"), rset ->
                 new Person(rset.getInt(1),
@@ -63,6 +64,36 @@ public class DataService {
                         rset.getString(3),
                         rset.getString(4),
                         rset.getString(5)));
+    }
+
+    public Grade getGrade(Integer studentId, Integer courseId) {
+        List<Grade> xs = runSimpleQuery(ReadQueries.getGrade(studentId, courseId),
+                rset -> new Grade(rset.getInt(1), rset.getString(2)));
+        if (xs.size() == 0) {
+            return null;
+        } else if (xs.size() == 1) {
+            return xs.get(0);
+        } else {
+            throw new IllegalStateException("data violates compound key in gradings table");
+        }
+    }
+
+    public void addOrUpdateGrading(Integer studentId, Integer courseId, Integer gradeValue, String gradeComment) {
+        if (getGrade(studentId, courseId) != null) {
+            runParameterizedUpdate(WriteQueries.updateGrading(), ps -> {
+                ps.setInt(1, gradeValue);
+                ps.setString(2, gradeComment);
+                ps.setInt(3, studentId);
+                ps.setInt(4, courseId);
+            });
+        } else {
+            runParameterizedUpdate(WriteQueries.insertGrading(), ps -> {
+                ps.setInt(1, studentId);
+                ps.setInt(2, courseId);
+                ps.setInt(3, gradeValue);
+                ps.setString(4, gradeComment);
+            });
+        }
     }
 
     public List<Person> getProfsNotDoingEvent(Integer eventId) {

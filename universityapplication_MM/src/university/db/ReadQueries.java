@@ -45,5 +45,10 @@ public class ReadQueries {
                                   "and x.student_id = s.student_id)";
     }
 
+    static String getGrade(Integer studentId, Integer courseId) {
+        return String.format("select grade, grading_comment from gradings where student_id = %s and course_id = %s",
+                studentId, courseId);
+    }
+
     private ReadQueries() {};
 }

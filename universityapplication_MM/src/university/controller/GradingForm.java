@@ -2,33 +2,22 @@ package university.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import university.db.DataService;
 import university.model.Course;
 import university.model.Grade;
 import university.model.Person;
 
-import javax.swing.text.html.ListView;
-import java.awt.*;
-import java.awt.Button;
-
 public class GradingForm {
     @FXML ListView<Course> courseListView;
     @FXML ListView<Person> studentListView;
-    @FXML
-    TextField studNameField;
+    @FXML TextField studNameField;
     @FXML TextField courseNameField;
     @FXML TextField gradeValueField;
-    @FXML
-    TextArea gradeCommentField;
-    @FXML
-    Button clearBtn;
+    @FXML TextArea gradeCommentField;
+    @FXML Button clearBtn;
     @FXML Button restoreBtn;
     @FXML Button saveBtn;
-    @FXML
-    Label formErrorMsg;
+    @FXML Label formErrorMsg;
 
     DataService db;
     public void setDb(DataService db) { this.db = db; }
