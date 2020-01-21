@@ -39,5 +39,21 @@ public class WriteQueries {
         return String.format("delete from %s where %s = ? and %s = ?", tableName, idColname1, idColname2);
     }
 
+    /**
+     * Returns query string for PreparedStatement that takes four SQL params: student id, course id, grade value,
+     * grading comment
+     */
+    static String insertGrading() {
+        return "insert into gradings values (?, ?, ?, ?)";
+    }
+
+    /**
+     * Returns query string for PreparedStatement that takes four SQL params: grade value, grade comment,
+     * student id, course id
+     */
+    static String updateGrading() {
+        return "update gradings set grade = ?, grading_comment = ? where student_id = ? and course_id = ?";
+    }
+
     private WriteQueries() {};
 }

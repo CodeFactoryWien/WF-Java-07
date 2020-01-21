@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import university.controller.CourseView;
+import university.controller.GradingForm;
 import university.db.DataService;
 
 public class Main extends Application {
@@ -15,19 +16,24 @@ public class Main extends Application {
         var db = new DataService("university", "root", "");
         primaryStage.setOnCloseRequest(e -> db.close());
 
-        FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("controller/CourseView.fxml"));
-        Parent     gcViewRoot = gcViewLoader.load();
-        CourseView gcViewController = gcViewLoader.getController();
+        FXMLLoader courseViewLoader = new FXMLLoader(getClass().getResource("controller/CourseView.fxml"));
+        Parent     courseViewRoot = courseViewLoader.load();
+        CourseView courseViewController = courseViewLoader.getController();
 
-        gcViewController.setDb(db);
-        gcViewController.loadData();
-        gcViewController.wireElements();
+        courseViewController.setDb(db);
+        courseViewController.loadData();
+        courseViewController.wireElements();
 
+        FXMLLoader  gradingFormLoader = new FXMLLoader(getClass().getResource("controller/GradingForm.fxml"));
+        Parent      gradingFormRoot = gradingFormLoader.load();
+        GradingForm gradingFormController = gradingFormLoader.getController();
 
-
+        gradingFormController.setDb(db);
+        gradingFormController.loadData();
+        gradingFormController.wireElements();
 
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(gcViewRoot));
+        primaryStage.setScene(new Scene(gradingFormRoot));
         primaryStage.show();
     }
 
