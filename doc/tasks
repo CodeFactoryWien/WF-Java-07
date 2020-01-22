@@ -1,5 +1,6 @@
 high priority:
   - basic function testing using test data
+  - make all element sizes and positions make sense
 
 low priority:
   - add more course unit test data
