@@ -13,6 +13,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import university.MainB;
@@ -48,7 +49,7 @@ public class MenuController implements Initializable {
             ResultSet searchForUser = db.resultSet("SELECT * FROM professors WHERE professor_name = '" + firstName + "' AND professor_surname = '" + lastName + "'");
             try {
                 if (searchForUser.next()) {
-                    FXMLLoader menuViewLoader = new FXMLLoader(getClass().getResource("MenuView.fxml"));
+                    FXMLLoader menuViewLoader = new FXMLLoader(getClass().getResource("MenuViewAlt.fxml"));
                     Parent root = menuViewLoader.load();
                     MenuController menuViewController = menuViewLoader.getController();
 
@@ -82,14 +83,14 @@ public class MenuController implements Initializable {
     //Pane to field Views
 
     @FXML
-    private AnchorPane rootPane;
+    private Pane rootPane;
 
     //Second scene - Action events
 
     @FXML
     void coursesActionButton(ActionEvent event) throws IOException {
-        FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("CourseView.fxml"));
-        SplitPane coursesPane = gcViewLoader.load();
+        FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("CourseViewAlt.fxml"));
+        Pane coursesPane = gcViewLoader.load();
         CourseView gcViewController = gcViewLoader.getController();
 
         gcViewController.setDb(db);

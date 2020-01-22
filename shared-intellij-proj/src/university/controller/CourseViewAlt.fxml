@@ -12,12 +12,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.33, 0.66"
-           maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-           prefHeight="800.0" prefWidth="1200.0"
-           xmlns="http://javafx.com/javafx/11.0.1"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="university.controller.CourseView">
+<GridPane hgap="10"
+          xmlns="http://javafx.com/javafx/11.0.1"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="university.controller.CourseView">
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.3"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.3"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.3"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
 
     <VBox>
         <HBox>
@@ -26,7 +33,7 @@
         </HBox>
         <ListView fx:id="courseListView" prefHeight="800"/>
     </VBox>
-    <VBox>
+    <VBox GridPane.columnIndex="1">
         <Label>COURSE INFO</Label>
         <GridPane hgap="5" vgap="10">
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0">ID:</Label>
@@ -49,7 +56,7 @@
         <Label>Associated Course Events:</Label>
         <ListView fx:id="courseEventsListView" />
     </VBox>
-    <VBox>
+    <VBox GridPane.columnIndex="2">
         <Label>COURSE EVENT INFO</Label>
         <GridPane hgap="5" vgap="10">
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0">ID:</Label>
@@ -77,4 +84,4 @@
         </HBox>
         <ListView fx:id="studsAttendingEventListView" />
     </VBox>
-</SplitPane>
+</GridPane>

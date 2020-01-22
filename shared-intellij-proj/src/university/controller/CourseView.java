@@ -16,6 +16,7 @@ import java.util.List;
 public class CourseView {
     @FXML TextField courseListFilter;
     FilteredList<Course> filteredCourses;
+    @FXML Button clearCourseFilterBtn;
     @FXML ListView<Course> courseListView;
 
     @FXML TextField courseIdField;
@@ -69,6 +70,7 @@ public class CourseView {
                         el.getTitle().toLowerCase().contains(courseListFilter.getText().toLowerCase()));
             }
         });
+        clearCourseFilterBtn.setOnAction(e -> courseListFilter.setText(""));
     }
 
     private void connectCourseListToCourseDetails() {
