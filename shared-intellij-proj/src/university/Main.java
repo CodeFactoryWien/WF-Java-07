@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import university.db.DataService;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -38,7 +37,7 @@ public class Main extends Application {
 
     private Properties getAppProps() throws IOException {
         Properties props = new Properties();
-        FileInputStream in = new FileInputStream("localdev.props");
+        var in = getClass().getResourceAsStream("localdev.props");
         props.load(in);
         in.close();
         return props;

@@ -1,0 +1,6 @@
+# Copy this example file to 'localdev.props' in the same location, then in the new file
+# change dbname, dbuser and dbpass values to your values below (leave 'dbpass =' like that for no password).
+
+dbname = university
+dbuser = root
+dbpass =
