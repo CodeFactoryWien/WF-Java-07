@@ -1,0 +1,13 @@
+high priority:
+  - MenuView correctly loads CourseView, StudentsView and GradeFormView
+  - check database for naming problems, test data inconsistencies
+  - basic function testing using test data
+
+low priority:
+  - implement some kind of semester report thingy
+  - make full proj run on more than 1 laptop
+  - implement filter functionality for (some) listviews
+  - make something for 'overview' page
+  - add some paddings/margins to overall designs
+  - add colors to designs
+  - add more visual feedback to actions

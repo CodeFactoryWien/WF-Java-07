@@ -1,0 +1,30 @@
+- the app is used by staff members only
+  
+  This means that there is no need for a student/staff-specific functionality
+  separation by the problem specification. The app is not intended for students.
+
+- the user can register a specific student for a specific course (course event)
+  
+  There needs to be a way to select a course and a student to create
+  a registration. One idea would be having a 'register' function accessible via
+  'course info' screen; the mechanism could be analogous to that of
+  adding/removing professors at course events.
+
+- the user can change the description of a course
+
+  This would be part of a course info screen where you can see all data fields
+  and change some of them. The course info screen might pull together data from
+  'courses' and from 'course_events' and 'course_units' tables to present both
+  the static info not dependent on semesters, and a list of valid course runs
+
+- the user can add/remove professors assigned to a course event/course run
+
+  In the course info tab with its list of course events, those events could be
+  clickable, and by clicking you would be presented with the info associated
+  with the selected course run (without changing the view, just filling in
+  fields). Then, you could change some things, like the list of professors or
+  the registration deadline date.
+
+- the user can register a grade for a student in a course
+
+- the user can get a 'semester report' (for a student? a course event?)
