@@ -7,17 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import university.MainB;
 import university.db.DataService;
 import university.model.StudentGrade;
 import university.model.Person;
-
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 public class StudentView {
 
@@ -64,31 +59,29 @@ public class StudentView {
 
     public void connectListToDatabase(){
         studentsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                studentGradeList.getItems().clear();
-                studentIdField.setText(Integer.toString(newValue.getId()));
-                studentNameField.setText(newValue.getName());
-                studentSurnameField.setText(newValue.getSurname());
-                studentEmailField.setText(newValue.getEmail());
-                studentPhoneField.setText(newValue.getPhone());
+            studentGradeList.getItems().clear();
+            studentIdField.setText(Integer.toString(newValue.getId()));
+            studentNameField.setText(newValue.getName());
+            studentSurnameField.setText(newValue.getSurname());
+            studentEmailField.setText(newValue.getEmail());
+            studentPhoneField.setText(newValue.getPhone());
 
-                int studentId = studentsListView.getSelectionModel().getSelectedItem().getId();
-                System.out.println(studentId);
-                DataService ds = new DataService("university?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
-                Connection connection = ds.getConnection();
+            int studentId = studentsListView.getSelectionModel().getSelectedItem().getId();
+            ResultSet resultSet = null;
             try {
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT c.course_title, g.grade FROM gradings g JOIN courses c USING(course_id)" +
+                resultSet = MainB.resultSet("SELECT c.course_title, g.grade FROM gradings g JOIN courses c USING(course_id)\n" +
                         "JOIN students s USING(student_id) WHERE s.student_id = " + studentId);
+
                 ObservableList<StudentGrade> gradings = FXCollections.observableArrayList();
-                while (resultSet.next()){
+                while (resultSet.next()) {
                     String courseName = resultSet.getString(1);
                     Integer studentGrade = resultSet.getInt(2);
                     gradings.add(new StudentGrade(courseName, studentGrade));
-                }studentGradeList.getItems().addAll(gradings);
-            } catch (SQLException e) {
+                }
+                studentGradeList.getItems().addAll(gradings);
+            }catch (SQLException e) {
                 e.printStackTrace();
             }
-
         });
     }
 

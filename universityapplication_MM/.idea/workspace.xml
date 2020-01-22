@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0a78a8a-cce6-4f30-b4ce-9ef1ca5d36f8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../shared-intellij-proj/src/university/MainB.java" beforeDir="false" afterPath="$PROJECT_DIR$/../shared-intellij-proj/src/university/MainB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shared-intellij-proj/src/university/controller/CourseView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../shared-intellij-proj/src/university/controller/CourseView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shared-intellij-proj/src/university/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../shared-intellij-proj/src/university/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shared-intellij-proj/src/university/controller/StudentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../shared-intellij-proj/src/university/controller/StudentView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/universityapplication_MM/university/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/universityapplication_MM/university/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/universityapplication_MM/university/controller/MenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/universityapplication_MM/university/controller/MenuController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/university/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/university/controller/CourseView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/controller/CourseView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/university/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/university/controller/StudentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/controller/StudentView.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import university.MainB;
 import university.db.DataService;
 import java.net.URL;
 import java.sql.*;
@@ -22,8 +23,7 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
-
-
+    DataService db = new DataService("university?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -45,12 +45,7 @@ public class MenuController implements Initializable {
         if (!( split[0].equals(""))) {
             String firstName = split[0];
             String lastName = split[1];
-
-            DataService ds = new DataService("university?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
-            Connection connection = ds.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet searchForUser = statement.executeQuery("SELECT * FROM professors WHERE professor_name = " +
-                    "'" + firstName + "' AND professor_surname = '" + lastName + "'");
+            ResultSet searchForUser = MainB.resultSet("SELECT * FROM professors WHERE professor_name = '" + firstName + "' AND professor_surname = '" + lastName + "'");
             try {
                 if (searchForUser.next()) {
                     Parent secondWindow = FXMLLoader.load(getClass().getResource("MenuView.fxml"));
@@ -79,6 +74,9 @@ public class MenuController implements Initializable {
     private JFXButton studentsButton;
     @FXML
     private JFXButton gradesButton;
+
+    //Pane to field Views
+
     @FXML
     private AnchorPane rootPane;
 
@@ -86,7 +84,6 @@ public class MenuController implements Initializable {
 
     @FXML
     void coursesActionButton(ActionEvent event) throws IOException {
-        var db = new DataService("university?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
         FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("CourseView.fxml"));
         SplitPane coursesPane = gcViewLoader.load();
         CourseView gcViewController = gcViewLoader.getController();
@@ -98,7 +95,15 @@ public class MenuController implements Initializable {
 
     }
     @FXML
-    void gradesActionButton(ActionEvent event) {
+    void gradesActionButton(ActionEvent event) throws IOException {
+        FXMLLoader gViewLoader = new FXMLLoader(getClass().getResource("GradingForm.fxml"));
+        SplitPane gradingPane = gViewLoader.load();
+        GradingForm gViewController = gViewLoader.getController();
+
+        gViewController.setDb(db);
+        gViewController.loadData();
+        gViewController.wireElements();
+        rootPane.getChildren().setAll(gradingPane);
     }
     @FXML
     void overviewActionButton(ActionEvent event) {
@@ -106,7 +111,6 @@ public class MenuController implements Initializable {
     }
     @FXML
     void studentsActionButton(ActionEvent event) throws IOException {
-        var db = new DataService("university?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
         FXMLLoader sViewLoader = new FXMLLoader(getClass().getResource("StudentView.fxml"));
         StackPane studentsPane = sViewLoader.load();
         StudentView sViewController = sViewLoader.getController();
