@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import university.controller.MenuController;
 import university.db.DataService;
 
 import java.io.FileInputStream;
@@ -23,7 +24,13 @@ public class Main extends Application {
                 props.getProperty("dbpass"));
 
         primaryStage.setOnCloseRequest(e -> db.close());
-        Parent root = FXMLLoader.load(getClass().getResource("controller/LogInView.fxml"));
+
+        FXMLLoader logInViewLoader = new FXMLLoader(getClass().getResource("controller/LogInView.fxml"));
+        Parent root = logInViewLoader.load();
+        MenuController logInViewController = logInViewLoader.getController();
+
+        logInViewController.setDb(db);
+        /*Parent root = FXMLLoader.load(getClass().getResource("controller/LogInView.fxml"));*/
         Image icon = new Image(getClass().getResourceAsStream("/images/mickey_gryffindor.png"));
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("University of Magic and Higher Sorcery");

@@ -30,22 +30,10 @@
             <TextField fx:id="coursePointsField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
             <TextArea fx:id="courseDescrField" prefHeight="200" prefWidth="200" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Button fx:id="restoreDescrBtn" GridPane.columnIndex="2" GridPane.rowIndex="4">Restore</Button>
-            <Button fx:id="updateDescrBtn" GridPane.columnIndex="3" GridPane.rowIndex="4">Update</Button>
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
-
+            <VBox GridPane.columnIndex="2" GridPane.rowIndex="4">
+                <Button fx:id="restoreDescrBtn">Restore</Button>
+                <Button fx:id="updateDescrBtn">Update</Button>
+            </VBox>
         </GridPane>
         <Label>Associated Course Events:</Label>
         <ListView fx:id="courseEventsListView" />
@@ -64,26 +52,15 @@
             <TextField fx:id="courseEventRegDateField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="courseEventStartDateField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="courseEventEndDateField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
         </GridPane>
+        <Label fx:id="profsAtEventListLabel">Professors registered as teaching: </Label>
         <HBox>
-            <Label fx:id="profsAtEventListLabel">Professors registered as teaching: </Label>
             <Button fx:id="rmProfBtn">Remove Selected</Button>
             <Button fx:id="addProfBtn">Add New</Button>
         </HBox>
         <ListView fx:id="profsTeachingEventListView" />
+        <Label fx:id="studsAtEventListLabel">Students registered as attending:</Label>
         <HBox>
-            <Label fx:id="studsAtEventListLabel">Students registered as attending:</Label>
             <Button fx:id="rmStudBtn">Remove Selected</Button>
             <Button fx:id="addStudBtn">Add New</Button>
         </HBox>
