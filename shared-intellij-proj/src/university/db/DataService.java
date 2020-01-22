@@ -49,7 +49,7 @@ public class DataService {
     }
 
     public List<Person> getProfessors() {
-        return runSimpleQuery(ReadQueries.getAll("professors"), rset ->
+        return runSimpleQuery(ReadQueries.getAll("professors", "professor_surname"), rset ->
                 new Person(rset.getInt(1),
                         rset.getString(2),
                         rset.getString(3),
@@ -58,7 +58,7 @@ public class DataService {
     }
 
     public List<Person> getStudents() {
-        return runSimpleQuery(ReadQueries.getAll("students"), rset ->
+        return runSimpleQuery(ReadQueries.getAll("students", "student_surname"), rset ->
                 new Person(rset.getInt(1),
                         rset.getString(2),
                         rset.getString(3),

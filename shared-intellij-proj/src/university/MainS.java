@@ -33,7 +33,7 @@ public class MainS extends Application {
         gradingFormController.wireElements();
 
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(gradingFormRoot));
+        primaryStage.setScene(new Scene(courseViewRoot));
         primaryStage.show();
     }
 

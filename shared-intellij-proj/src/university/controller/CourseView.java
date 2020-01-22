@@ -54,9 +54,8 @@ public class CourseView {
 
     private void connectCourseListToCourseDetails() {
         courseListView.getSelectionModel().selectedItemProperty().addListener((obs, oval, nval) -> {
-            if (nval == null) {
-                clearAll();
-            } else {
+            clearAll();
+            if (nval != null) {
                 db.addCourseEventDataToCourse(nval);
 
                 courseIdField.setText(Integer.toString(nval.getId()));

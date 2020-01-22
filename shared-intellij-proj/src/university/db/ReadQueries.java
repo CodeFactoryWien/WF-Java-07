@@ -1,13 +1,14 @@
 package university.db;
 
 public class ReadQueries {
-    static String getAll(String tableName) {
-        return "select * from " + tableName;
+    static String getAll(String tableName) { return "select * from " + tableName; }
+    static String getAll(String tableName, String sortBy) {
+        return "select * from " + tableName + " order by " + sortBy;
     }
 
     static String getCoursesData() {
         return "select course_id, course_title, course_description, course_type_name, course_module_code, course_credit_points " +
-                "from courses join course_types using (course_type_id)";
+                "from courses join course_types using (course_type_id) order by course_title";
     }
 
     static String getCourseEventsOfCourse(Integer courseId) {
