@@ -213,4 +213,10 @@ public class DataService {
             e.printStackTrace();
         }
     }
+    public ResultSet resultSet(String query) throws SQLException {
+        Connection con = connection;
+        Statement statement = con.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        return resultSet;
+    }
 }

@@ -2,6 +2,7 @@ package university.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import university.MainB;
 import university.db.DataService;
 import university.model.Course;
 import university.model.CourseEvent;

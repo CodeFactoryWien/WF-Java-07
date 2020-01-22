@@ -15,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import university.MainB;
 import university.db.DataService;
 import java.net.URL;
 import java.sql.*;
@@ -23,12 +22,11 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
-    DataService db = new DataService("university?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) { }
 
-    }
-
+    DataService db;
+    public void setDb(DataService db){this.db = db;}
     //First scene - Nodes
 
     @FXML
@@ -37,6 +35,7 @@ public class MenuController implements Initializable {
     private TextField logInTextField;
     @FXML
     private Button logInButton;
+
     //Log in button - Action event
 
     @FXML
@@ -45,14 +44,14 @@ public class MenuController implements Initializable {
         if (!( split[0].equals(""))) {
             String firstName = split[0];
             String lastName = split[1];
-            ResultSet searchForUser = MainB.resultSet("SELECT * FROM professors WHERE professor_name = '" + firstName + "' AND professor_surname = '" + lastName + "'");
+            ResultSet searchForUser = db.resultSet("SELECT * FROM professors WHERE professor_name = '" + firstName + "' AND professor_surname = '" + lastName + "'");
             try {
                 if (searchForUser.next()) {
-                    Parent secondWindow = FXMLLoader.load(getClass().getResource("MenuView.fxml"));
-                    Scene secondScene = new Scene(secondWindow);
-                    Stage secondStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    secondStage.setScene(secondScene);
-                    secondStage.show();
+                    FXMLLoader menuViewLoader = new FXMLLoader(getClass().getResource("controller/MenuView.fxml"));
+                    Parent menuViewRoot = menuViewLoader.load();
+                    MenuController menuViewController = menuViewLoader.getController();
+
+                    menuViewController.setDb(db);
                 } else {
                     System.out.println("not connected!");
                 }

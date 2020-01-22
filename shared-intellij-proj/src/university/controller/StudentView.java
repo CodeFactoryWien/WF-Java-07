@@ -69,7 +69,7 @@ public class StudentView {
             int studentId = studentsListView.getSelectionModel().getSelectedItem().getId();
             ResultSet resultSet = null;
             try {
-                resultSet = MainB.resultSet("SELECT c.course_title, g.grade FROM gradings g JOIN courses c USING(course_id)\n" +
+                db.resultSet("SELECT c.course_title, g.grade FROM gradings g JOIN courses c USING(course_id)\n" +
                         "JOIN students s USING(student_id) WHERE s.student_id = " + studentId);
 
                 ObservableList<StudentGrade> gradings = FXCollections.observableArrayList();
