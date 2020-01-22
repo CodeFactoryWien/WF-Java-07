@@ -27,4 +27,4 @@
 
 - the user can register a grade for a student in a course
 
-- the user can get a 'grading report' (for a student? a course event?)
+- the user can get a 'semester report' (for a student? a course event?)
