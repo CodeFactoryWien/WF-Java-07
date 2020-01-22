@@ -182,7 +182,7 @@ CREATE TABLE `professors` (
 
 LOCK TABLES `professors` WRITE;
 /*!40000 ALTER TABLE `professors` DISABLE KEYS */;
-INSERT INTO `professors` VALUES (1,'Prof.Mickey','Mouse','mickey.mouse@disney.com','02878924'),(2,'Prof.Minnie','Mouse','minniemouse@disney.com','07872893'),(3,'Prof.Cruella','De Vil','devil@disney.com','0738472893'),(4,'Prof.Thomas','O´Malley','Thomas@disney.com','03862378'),(5,'Prof.Evil','Queen','evilqueen@disney.com','0516375723'),(6,'Prof.Robin','Hood','Hood.robin@disney.com','023872894'),(7,'Prof.Princ','Charming','charming2342@disney.com','047638721'),(8,'Prof.Donald','Duck','duckdonald@disney.com','07384298'),(9,'Prof.Winnie','Pooh','winniethepooh@disney.com','037467832'),(10,'Prof.Shere','Khan','khan.shere@disney.com','03482783'),(11,'Prof.Jiminy','Cricket','cricket.jiminy@disney.com','0283782'),(12,'Prof.Nani','Pelekai','nanipel@disney.com','02837289');
+INSERT INTO `professors` VALUES (1,'Mickey','Mouse','mickey.mouse@disney.com','02878924'),(2,'Minnie','Mouse','minniemouse@disney.com','07872893'),(3,'Cruella','De Vil','devil@disney.com','0738472893'),(4,'Thomas','O´Malley','Thomas@disney.com','03862378'),(5,'Evil','Queen','evilqueen@disney.com','0516375723'),(6,'Robin','Hood','Hood.robin@disney.com','023872894'),(7,'Prince','Charming','charming2342@disney.com','047638721'),(8,'Donald','Duck','duckdonald@disney.com','07384298'),(9,'Winnie','Pooh','winniethepooh@disney.com','037467832'),(10,'Shere','Khan','khan.shere@disney.com','03482783'),(11,'Jiminy','Cricket','cricket.jiminy@disney.com','0283782'),(12,'Nani','Pelekai','nanipel@disney.com','02837289');
 /*!40000 ALTER TABLE `professors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,4 +306,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-21 15:33:44
+-- Dump completed on 2020-01-22  9:25:44

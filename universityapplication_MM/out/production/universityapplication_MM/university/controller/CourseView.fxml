@@ -1,62 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<SplitPane xmlns="http://javafx.com/javafx"
-           xmlns:fx="http://javafx.com/fxml"
-           fx:controller="university.controller.CourseView"
-           dividerPositions="0.33f, 0.66f">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-    <ListView fx:id="courseListView"/>
+<SplitPane dividerPositions="0.33, 0.66" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="university.controller.CourseView">
+
+    <ListView fx:id="courseListView" />
     <VBox>
         <Label>COURSE INFO</Label>
-        <GridPane vgap="10" hgap="5">
+        <GridPane hgap="5" vgap="10">
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0">ID:</Label>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="1">Type:</Label>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="2">Module:</Label>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="3">Credit Points:</Label>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="4">Description:</Label>
 
-            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="courseIdField"/>
-            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="courseTypeField"/>
-            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="courseModuleField"/>
-            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="coursePointsField"/>
+            <TextField fx:id="courseIdField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <TextField fx:id="courseTypeField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="courseModuleField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="coursePointsField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-            <TextArea GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="courseDescrField"
-                      wrapText="true" prefWidth="200" prefHeight="200"/>
-            <Button GridPane.columnIndex="2" GridPane.rowIndex="4" fx:id="restoreDescrBtn">Restore</Button>
-            <Button GridPane.columnIndex="3" GridPane.rowIndex="4" fx:id="updateDescrBtn">Update</Button>
+            <TextArea fx:id="courseDescrField" prefHeight="200" prefWidth="200" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button fx:id="restoreDescrBtn" GridPane.columnIndex="2" GridPane.rowIndex="4">Restore</Button>
+            <Button fx:id="updateDescrBtn" GridPane.columnIndex="3" GridPane.rowIndex="4">Update</Button>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
 
         </GridPane>
         <Label>Associated Course Events:</Label>
-        <ListView fx:id="courseEventsListView"/>
+        <ListView fx:id="courseEventsListView" />
     </VBox>
     <VBox>
         <Label>COURSE EVENT INFO</Label>
-        <GridPane vgap="10" hgap="5">
+        <GridPane hgap="5" vgap="10">
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0">ID:</Label>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="1">Room:</Label>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="2">Registration Deadline:</Label>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="3">Start Date:</Label>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="4">End Date:</Label>
 
-            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="courseEventIdField"/>
-            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="courseEventRoomField"/>
-            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="courseEventRegDateField"/>
-            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="courseEventStartDateField"/>
-            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="courseEventEndDateField"/>
+            <TextField fx:id="courseEventIdField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <TextField fx:id="courseEventRoomField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="courseEventRegDateField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="courseEventStartDateField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="courseEventEndDateField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
         <HBox>
             <Label fx:id="profsAtEventListLabel">Professors registered as teaching: </Label>
             <Button fx:id="rmProfBtn">Remove Selected</Button>
             <Button fx:id="addProfBtn">Add New</Button>
         </HBox>
-        <ListView fx:id="profsTeachingEventListView"/>
+        <ListView fx:id="profsTeachingEventListView" />
         <HBox>
             <Label fx:id="studsAtEventListLabel">Students registered as attending:</Label>
             <Button fx:id="rmStudBtn">Remove Selected</Button>
             <Button fx:id="addStudBtn">Add New</Button>
         </HBox>
-        <ListView fx:id="studsAttendingEventListView"/>
+        <ListView fx:id="studsAttendingEventListView" />
     </VBox>
 </SplitPane>

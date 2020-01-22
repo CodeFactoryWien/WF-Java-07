@@ -2,25 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0a78a8a-cce6-4f30-b4ce-9ef1ca5d36f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../temp-intellij-proj-sp/src/university/controller/CourseView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../temp-intellij-proj-sp/src/university/controller/CourseView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../temp-intellij-proj-sp/src/university/controller/GradingForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../temp-intellij-proj-sp/src/university/controller/GradingForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../temp-intellij-proj-sp/temp-intellij-proj-sp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../temp-intellij-proj-sp/temp-intellij-proj-sp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_181.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/universityapplication_MM.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/universityapplication_MM/university/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/universityapplication_MM/university/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/university/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/university/controller/CourseView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/controller/CourseView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/university/controller/CourseView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/controller/CourseView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/university/db/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/db/DataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/university/db/ReadQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/db/ReadQueries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/university/db/WriteQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/db/WriteQueries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityapplication_MM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/universityapplication_MM.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/university/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/university/controller/StudentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/university/controller/StudentView.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +46,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="university.Main" />
       <module name="universityapplication_MM" />
@@ -68,6 +55,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="university.Main" />
+      <module name="universityapplication_MM" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\barna\JavaFX\javafx-sdk-13.0.1\lib --add-modules=javafx.controls,javafx.fxml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="university.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -87,7 +96,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

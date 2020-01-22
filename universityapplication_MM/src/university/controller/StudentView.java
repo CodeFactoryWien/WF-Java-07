@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import university.Main;
 import university.db.DataService;
 import university.model.StudentGrade;
 import university.model.Person;
@@ -72,23 +73,21 @@ public class StudentView {
                 studentPhoneField.setText(newValue.getPhone());
 
                 int studentId = studentsListView.getSelectionModel().getSelectedItem().getId();
-                System.out.println(studentId);
-                DataService ds = new DataService("university?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
-                Connection connection = ds.getConnection();
+            ResultSet resultSet = null;
             try {
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT c.course_title, g.grade FROM gradings g JOIN courses c USING(course_id)" +
-                        "JOIN students s USING(student_id) WHERE s.student_id = " + studentId);
+                resultSet = Main.resultSet("SELECT c.course_title, g.grade FROM gradings g JOIN courses c USING(course_id)\n" +
+                                                "JOIN students s USING(student_id) WHERE s.student_id = " + studentId);
+
                 ObservableList<StudentGrade> gradings = FXCollections.observableArrayList();
-                while (resultSet.next()){
+                while (resultSet.next()) {
                     String courseName = resultSet.getString(1);
                     Integer studentGrade = resultSet.getInt(2);
                     gradings.add(new StudentGrade(courseName, studentGrade));
-                }studentGradeList.getItems().addAll(gradings);
-            } catch (SQLException e) {
+                }
+                studentGradeList.getItems().addAll(gradings);
+            }catch (SQLException e) {
                 e.printStackTrace();
             }
-
         });
     }
 

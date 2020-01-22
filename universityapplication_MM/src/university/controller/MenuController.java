@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import university.Main;
 import university.db.DataService;
 import java.net.URL;
 import java.sql.*;
@@ -45,12 +46,12 @@ public class MenuController implements Initializable {
         if (!( split[0].equals(""))) {
             String firstName = split[0];
             String lastName = split[1];
-
-            DataService ds = new DataService("university?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
-            Connection connection = ds.getConnection();
+            ResultSet searchForUser = Main.resultSet("SELECT * FROM professors WHERE professor_name = '" + firstName + "' AND professor_surname = '" + lastName + "'");
+            /*DataService ds = new DataService("university?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
+            *//*Connection connection = ds.getConnection();
             Statement statement = connection.createStatement();
             ResultSet searchForUser = statement.executeQuery("SELECT * FROM professors WHERE professor_name = " +
-                    "'" + firstName + "' AND professor_surname = '" + lastName + "'");
+                    "'" + firstName + "' AND professor_surname = '" + lastName + "'");*/
             try {
                 if (searchForUser.next()) {
                     Parent secondWindow = FXMLLoader.load(getClass().getResource("MenuView.fxml"));
