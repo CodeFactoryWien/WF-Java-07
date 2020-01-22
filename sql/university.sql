@@ -34,7 +34,7 @@ CREATE TABLE `course_events` (
   KEY `room_id` (`room_id`),
   CONSTRAINT `course_events_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`),
   CONSTRAINT `course_events_ibfk_3` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +59,7 @@ CREATE TABLE `course_types` (
   `course_type_name` varchar(45) NOT NULL,
   `compulsory_attendance` tinyint(1) NOT NULL,
   PRIMARY KEY (`course_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +87,7 @@ CREATE TABLE `course_units` (
   PRIMARY KEY (`course_unit_id`) USING BTREE,
   KEY `course_event_id` (`course_event_id`),
   CONSTRAINT `course_units_ibfk_1` FOREIGN KEY (`course_event_id`) REFERENCES `course_events` (`course_event_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `course_units` (
 
 LOCK TABLES `course_units` WRITE;
 /*!40000 ALTER TABLE `course_units` DISABLE KEYS */;
-INSERT INTO `course_units` VALUES (1,1,'2020-02-23','10:30:00'),(2,2,'2020-01-27','17:00:00'),(3,1,'2019-12-15','09:00:00'),(4,4,'2019-12-08','18:00:00'),(5,3,'2019-10-06','16:00:00'),(6,5,'2020-01-05','16:30:00'),(7,6,'2019-11-10','00:00:00'),(8,7,'2020-01-02','10:30:00'),(9,8,'2019-10-21','07:20:00'),(10,9,'2020-01-10','17:00:00'),(11,10,'2019-12-22','18:30:00'),(12,6,'2019-11-26','11:00:00');
+INSERT INTO `course_units` VALUES (1,1,'2020-02-23','10:30:00'),(2,2,'2020-01-27','17:00:00'),(3,1,'2019-12-15','09:00:00'),(4,4,'2019-12-08','18:00:00'),(5,3,'2019-10-06','16:00:00'),(6,5,'2020-01-05','16:30:00'),(7,6,'2019-11-10','00:00:00'),(8,7,'2020-01-02','10:30:00'),(9,8,'2019-10-21','07:20:00'),(10,9,'2020-01-10','17:00:00'),(11,10,'2019-12-22','18:30:00'),(12,6,'2019-11-26','11:00:00'),(13,5,'2020-03-02','10:00:00'),(14,1,'2020-04-20','16:00:00'),(15,2,'2020-03-12','10:30:00'),(16,3,'2020-05-06','12:00:00'),(17,4,'2020-02-09','08:00:00'),(18,5,'2020-06-14','18:30:00'),(19,6,'2020-05-01','12:30:00'),(20,7,'2020-01-24','09:00:00'),(21,8,'2020-06-03','15:15:00'),(22,9,'2020-05-10','13:45:00'),(23,10,'2020-02-29','19:20:00'),(24,1,'2020-04-22','07:20:00'),(25,1,'2020-01-13','09:45:00'),(26,1,'2020-06-27','12:50:00'),(27,1,'2020-05-02','11:25:00'),(28,2,'2020-03-17','13:00:00'),(29,2,'2020-05-24','14:50:00'),(30,2,'2020-02-10','12:05:00'),(31,2,'2020-03-21','09:00:00'),(32,2,'2020-04-15','10:20:00'),(33,3,'2020-01-19','08:30:00'),(34,3,'2020-05-20','11:15:00'),(35,3,'2020-06-10','15:20:00'),(36,3,'2020-03-12','16:00:00'),(37,3,'2020-04-07','17:15:00'),(38,3,'2020-02-10','07:40:00'),(39,4,'2020-04-09','11:00:00'),(40,4,'2020-04-16','12:30:00'),(41,4,'2020-05-04','18:00:00'),(42,4,'2020-05-20','08:00:00'),(43,4,'2020-06-02','14:30:00'),(44,4,'2020-06-19','10:40:00'),(45,5,'2020-01-23','13:00:00'),(46,5,'2020-02-11','09:00:00'),(47,5,'2020-02-27','09:30:00'),(48,5,'2020-03-12','14:00:00'),(49,5,'2020-04-03','14:00:00'),(50,6,'2020-02-12','16:00:00'),(51,6,'2020-02-22','09:30:00'),(52,6,'2020-03-02','13:00:00'),(53,6,'2020-03-19','13:40:00'),(54,7,'2020-04-30','08:30:00'),(55,7,'2020-05-05','09:00:00'),(56,7,'2020-05-20','12:20:00'),(57,7,'2020-05-28','15:00:00'),(58,7,'2020-06-02','16:30:00'),(59,7,'2020-06-12','12:30:00'),(60,8,'2020-03-06','08:00:00'),(61,8,'2020-03-20','08:30:00'),(62,8,'2020-04-01','09:40:00'),(63,8,'2020-04-10','12:30:00'),(64,8,'2020-04-19','19:00:00'),(65,9,'2020-04-04','14:00:00'),(66,9,'2020-04-09','10:00:00'),(67,9,'2020-04-15','12:00:00'),(68,9,'2020-04-29','09:20:00'),(69,9,'2020-05-06','17:30:00'),(70,10,'2020-05-30','12:30:00'),(71,10,'2020-06-04','15:00:00'),(72,10,'2020-06-10','09:00:00'),(73,10,'2020-06-17','09:45:00'),(74,10,'2020-06-23','15:20:00');
 /*!40000 ALTER TABLE `course_units` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `courses` (
   PRIMARY KEY (`course_id`),
   KEY `course_type_id` (`course_type_id`),
   CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`course_type_id`) REFERENCES `course_types` (`course_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +146,7 @@ CREATE TABLE `gradings` (
   KEY `course_id` (`course_id`),
   CONSTRAINT `gradings_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`),
   CONSTRAINT `gradings_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +155,7 @@ CREATE TABLE `gradings` (
 
 LOCK TABLES `gradings` WRITE;
 /*!40000 ALTER TABLE `gradings` DISABLE KEYS */;
-INSERT INTO `gradings` VALUES (1,1,1,'Perfect Work!'),(1,3,4,'You have to learn!'),(2,1,1,'Perfect!'),(2,7,3,'Not that bad!'),(3,7,1,'Congrats!'),(3,9,1,'Wonderful!'),(4,7,4,'Very Bad'),(5,7,2,'It gets better!'),(6,7,1,'Very Good!'),(7,6,2,'Good Work'),(8,9,1,'Very good!'),(9,7,5,'You failed!'),(9,10,3,'Well done.'),(10,1,1,'Your work was fantastic!'),(11,3,1,'Very good'),(12,1,2,'Not That bad'),(12,4,1,'Amazing!'),(12,9,5,'You have to learn!'),(12,10,5,'Failed!'),(13,8,3,'Not that bad!'),(14,2,1,'Very Good'),(16,6,3,'Learn a little bit more'),(17,6,1,'Good Work!'),(18,6,2,'Well done!'),(20,4,1,'Perfect!'),(20,9,1,'Amazing!'),(21,4,3,'Not that bad!'),(21,5,5,'You failed!'),(23,4,2,'Nice Work'),(24,4,5,'Failed'),(25,4,1,'Amazing'),(26,6,3,'No comment'),(26,10,1,'Really good'),(27,5,2,'Well done..'),(27,6,4,'You have to take a look at it '),(30,8,1,'perfect'),(30,9,5,'Failed');
+INSERT INTO `gradings` VALUES (1,1,1,'Perfect Work!'),(1,3,4,'You have to learn!'),(2,1,1,'Perfect!'),(2,7,3,'Not that bad!'),(3,7,1,'Congrats!'),(3,9,1,'Wonderful!'),(4,7,4,'Very Bad'),(5,7,2,'It gets better!'),(6,5,1,'Super toll!'),(6,7,1,'Very Good!'),(7,6,2,'Good Work'),(8,9,1,'Very good!'),(9,7,5,'You failed!'),(9,10,3,'Well done.'),(10,1,1,'Your work was fantastic!'),(11,3,1,'Very good'),(12,1,2,'Not That bad'),(12,4,1,'Amazing!'),(12,9,5,'You have to learn!'),(12,10,5,'Failed!'),(13,8,3,'Not that bad!'),(14,2,1,'Very Good'),(16,6,3,'Learn a little bit more'),(17,6,1,'Good Work!'),(18,6,2,'Well done!'),(20,4,1,'Perfect!'),(20,9,1,'Amazing!'),(21,4,3,'Not that bad!'),(21,5,5,'You failed!'),(23,4,2,'Nice Work'),(24,4,5,'Failed'),(25,4,1,'Amazing'),(26,6,3,'No comment'),(26,10,1,'Really good'),(27,5,2,'Well done..'),(27,6,4,'You have to take a look at it '),(30,8,1,'perfect'),(30,9,5,'Failed');
 /*!40000 ALTER TABLE `gradings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +173,7 @@ CREATE TABLE `professors` (
   `professor_email` varchar(45) NOT NULL,
   `professor_phone_number` varchar(45) NOT NULL,
   PRIMARY KEY (`professor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,7 +201,7 @@ CREATE TABLE `professors_doing_course_events` (
   KEY `professor_id` (`professor_id`),
   CONSTRAINT `professors_doing_course_events_ibfk_1` FOREIGN KEY (`professor_id`) REFERENCES `professors` (`professor_id`),
   CONSTRAINT `professors_doing_course_events_ibfk_2` FOREIGN KEY (`course_event_id`) REFERENCES `course_events` (`course_event_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +225,7 @@ CREATE TABLE `rooms` (
   `room_id` int(11) NOT NULL AUTO_INCREMENT,
   `room_name` varchar(45) NOT NULL,
   PRIMARY KEY (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +252,7 @@ CREATE TABLE `students` (
   `student_email` varchar(45) NOT NULL,
   `student_phone_number` varchar(45) NOT NULL,
   PRIMARY KEY (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +280,7 @@ CREATE TABLE `students_attending_course_events` (
   KEY `course_event_id` (`course_event_id`),
   CONSTRAINT `students_attending_course_events_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`),
   CONSTRAINT `students_attending_course_events_ibfk_2` FOREIGN KEY (`course_event_id`) REFERENCES `course_events` (`course_event_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -306,4 +306,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-22  9:25:44
+-- Dump completed on 2020-01-22 13:47:06
