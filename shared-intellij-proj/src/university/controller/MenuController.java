@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import university.MainB;
 import university.db.DataService;
 import java.net.URL;
 import java.sql.*;
@@ -47,11 +48,15 @@ public class MenuController implements Initializable {
             ResultSet searchForUser = db.resultSet("SELECT * FROM professors WHERE professor_name = '" + firstName + "' AND professor_surname = '" + lastName + "'");
             try {
                 if (searchForUser.next()) {
-                    FXMLLoader menuViewLoader = new FXMLLoader(getClass().getResource("controller/MenuView.fxml"));
-                    Parent menuViewRoot = menuViewLoader.load();
+                    FXMLLoader menuViewLoader = new FXMLLoader(getClass().getResource("MenuView.fxml"));
+                    Parent root = menuViewLoader.load();
                     MenuController menuViewController = menuViewLoader.getController();
 
                     menuViewController.setDb(db);
+                    Scene secondScene = new Scene(root);
+                    Stage secondStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    secondStage.setScene(secondScene);
+                    secondStage.show();
                 } else {
                     System.out.println("not connected!");
                 }

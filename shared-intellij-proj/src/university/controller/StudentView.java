@@ -67,15 +67,14 @@ public class StudentView {
             studentPhoneField.setText(newValue.getPhone());
 
             int studentId = studentsListView.getSelectionModel().getSelectedItem().getId();
-            ResultSet resultSet = null;
             try {
-                db.resultSet("SELECT c.course_title, g.grade FROM gradings g JOIN courses c USING(course_id)\n" +
+                ResultSet res = db.resultSet("SELECT c.course_title, g.grade FROM gradings g JOIN courses c USING(course_id)\n" +
                         "JOIN students s USING(student_id) WHERE s.student_id = " + studentId);
 
                 ObservableList<StudentGrade> gradings = FXCollections.observableArrayList();
-                while (resultSet.next()) {
-                    String courseName = resultSet.getString(1);
-                    Integer studentGrade = resultSet.getInt(2);
+                while (res.next()) {
+                    String courseName = res.getString(1);
+                    Integer studentGrade = res.getInt(2);
                     gradings.add(new StudentGrade(courseName, studentGrade));
                 }
                 studentGradeList.getItems().addAll(gradings);
