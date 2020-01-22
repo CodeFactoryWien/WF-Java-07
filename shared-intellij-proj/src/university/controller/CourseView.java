@@ -1,5 +1,8 @@
 package university.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import university.MainB;
@@ -11,6 +14,8 @@ import university.model.Person;
 import java.util.List;
 
 public class CourseView {
+    @FXML TextField courseListFilter;
+    FilteredList<Course> filteredCourses;
     @FXML ListView<Course> courseListView;
 
     @FXML TextField courseIdField;
@@ -42,15 +47,28 @@ public class CourseView {
     public void setDb(DataService db) { this.db = db; }
 
     public void loadData() {
-        var courses = db.getCourses();
-        courseListView.getItems().setAll(courses);
+        ObservableList<Course> courses = FXCollections.observableArrayList(db.getCourses());
+        filteredCourses = new FilteredList<>(courses, el -> true);
+        courseListView.setItems(filteredCourses);
     }
 
     public void wireElements() {
+        connectCourseListFilterToCourseList();
         connectCourseListToCourseDetails();
         connectEventListToEventDetails();
         activateCourseDetailButtons();
         activateEventDetailButtons();
+    }
+
+    private void connectCourseListFilterToCourseList() {
+        courseListFilter.textProperty().addListener(change -> {
+            if(courseListFilter.getText().isEmpty()) {
+                filteredCourses.setPredicate(el -> true);
+            } else {
+                filteredCourses.setPredicate(el ->
+                        el.getTitle().toLowerCase().contains(courseListFilter.getText().toLowerCase()));
+            }
+        });
     }
 
     private void connectCourseListToCourseDetails() {
