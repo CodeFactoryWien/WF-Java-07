@@ -36,14 +36,16 @@ public class ReadQueries {
         return "select professor_id, professor_name, professor_surname from professors p " +
                "where not exists (select 1 from professors_doing_course_events x " +
                                  "where course_event_id = " + Integer.toString(eventId) + " " +
-                                 "and x.professor_id = p.professor_id)";
+                                 "and x.professor_id = p.professor_id) " +
+                "order by professor_surname, professor_name";
     }
 
     static String getStudentsNotAttendingEvent(Integer eventId) {
         return "select student_id, student_name, student_surname from students s " +
                 "where not exists (select 1 from students_attending_course_events x " +
                                   "where course_event_id = " + Integer.toString(eventId) + " " +
-                                  "and x.student_id = s.student_id)";
+                                  "and x.student_id = s.student_id) " +
+                "order by student_surname, student_name";
     }
 
     static String getGrade(Integer studentId, Integer courseId) {
