@@ -117,6 +117,7 @@ public class CourseView {
 
     private void enterAddProfMode() {
         CourseEvent selectedCourseEvent = courseEventsListView.getSelectionModel().getSelectedItem();
+        if(selectedCourseEvent == null) return;
         List<Person> profsNotDoingEvent = db.getProfsNotDoingEvent(selectedCourseEvent.getId());
 
         profsAtEventListLabel.setText("Professors available for selection: ");
@@ -162,6 +163,7 @@ public class CourseView {
 
     private void enterAddStudMode() {
         CourseEvent selectedCourseEvent = courseEventsListView.getSelectionModel().getSelectedItem();
+        if(selectedCourseEvent == null) return;
         List<Person> studsNotDoingEvent = db.getStudsNotDoingEvent(selectedCourseEvent.getId());
 
         studsAtEventListLabel.setText("Students available for selection: ");
