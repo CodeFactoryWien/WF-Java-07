@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import university.MainB;
 import university.db.DataService;
 import university.model.StudentGrade;
@@ -36,7 +37,8 @@ public class StudentView {
     private JFXTextField studentPhoneField;
     @FXML
     private JFXButton studentRestoreButton;
-
+    @FXML
+    private ImageView studentsImageView;
     //Listviews
 
     @FXML

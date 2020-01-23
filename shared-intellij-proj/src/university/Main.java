@@ -30,7 +30,6 @@ public class Main extends Application {
         MenuController logInViewController = logInViewLoader.getController();
 
         logInViewController.setDb(db);
-        /*Parent root = FXMLLoader.load(getClass().getResource("controller/LogInView.fxml"));*/
         Image icon = new Image(getClass().getResourceAsStream("/images/mickey_gryffindor.png"));
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("University of Magic and Higher Sorcery");

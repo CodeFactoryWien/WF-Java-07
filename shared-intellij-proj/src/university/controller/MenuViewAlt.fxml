@@ -4,37 +4,31 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.RowConstraints?>
-<GridPane prefWidth="1024" prefHeight="768"
-          xmlns="http://javafx.com/javafx/11.0.1"
-          xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="university.controller.MenuController">
+<GridPane prefHeight="768" prefWidth="1024" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="university.controller.MenuController">
    <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
-      <ColumnConstraints hgrow="ALWAYS" percentWidth="75"/>
+      <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+      <ColumnConstraints hgrow="ALWAYS" percentWidth="75" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints vgrow="ALWAYS"/>
+      <RowConstraints vgrow="ALWAYS" />
    </rowConstraints>
 
    <VBox prefHeight="500.0" prefWidth="284.0" style="-fx-background-color: #802121;">
       <children>
          <Pane prefHeight="200.0" prefWidth="200.0">
             <children>
-               <ImageView fitHeight="232.0" fitWidth="260.0" layoutX="12.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="160.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../../images/univ_magic.png" />
-                  </image></ImageView>
+                  </image>
+               </ImageView>
             </children>
          </Pane>
          <JFXButton fx:id="overviewButton" onAction="#overviewActionButton" prefHeight="70.0" prefWidth="284.0" text="Overview" textFill="#ffa724">
@@ -58,5 +52,5 @@
          <DropShadow radius="21.32" width="66.28" />
       </effect>
    </VBox>
-   <Pane GridPane.columnIndex="1" fx:id="rootPane"/>
+   <Pane fx:id="rootPane" GridPane.columnIndex="1" />
 </GridPane>

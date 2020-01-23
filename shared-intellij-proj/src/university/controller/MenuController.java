@@ -1,6 +1,7 @@
 package university.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,16 +13,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import university.MainB;
 import university.db.DataService;
 import java.net.URL;
 import java.sql.*;
 import java.io.IOException;
 import java.util.ResourceBundle;
+
 
 public class MenuController implements Initializable {
     @Override
@@ -38,7 +37,9 @@ public class MenuController implements Initializable {
     @FXML
     private Button logInButton;
 
+
     //Log in button - Action event
+
 
     @FXML
     void logInAction(ActionEvent event) throws Exception {
@@ -50,7 +51,7 @@ public class MenuController implements Initializable {
             try {
                 if (searchForUser.next()) {
                     FXMLLoader menuViewLoader = new FXMLLoader(getClass().getResource("MenuView.fxml"));
-                    Parent root = menuViewLoader.load();
+                    StackPane root = menuViewLoader.load();
                     MenuController menuViewController = menuViewLoader.getController();
 
                     menuViewController.setDb(db);
@@ -72,6 +73,10 @@ public class MenuController implements Initializable {
     //Second scene - Nodes
 
     @FXML
+    private VBox exampleVBox;
+    @FXML
+    private JFXTextArea exampleTextField;
+    @FXML
     private JFXButton overviewButton;
     @FXML
     private JFXButton coursesButton;
@@ -80,17 +85,21 @@ public class MenuController implements Initializable {
     @FXML
     private JFXButton gradesButton;
 
+    @FXML
+    private VBox buttonsVbox;
+
+
     //Pane to field Views
 
     @FXML
-    private Pane rootPane;
+    private AnchorPane rootPane;
 
     //Second scene - Action events
 
     @FXML
     void coursesActionButton(ActionEvent event) throws IOException {
         FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("CourseView.fxml"));
-        Parent coursesPane = gcViewLoader.load();
+        SplitPane coursesPane = gcViewLoader.load();
         CourseView gcViewController = gcViewLoader.getController();
 
         gcViewController.setDb(db);
@@ -125,5 +134,6 @@ public class MenuController implements Initializable {
         sViewController.wireElements();
         rootPane.getChildren().setAll(studentsPane);
     }
+
 
 }
