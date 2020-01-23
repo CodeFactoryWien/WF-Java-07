@@ -5,8 +5,6 @@ high priority:
 low priority:
   - add more course unit test data
   - implement some kind of semester report thingy
-  - make full proj run on more than 1 laptop
-  - implement filter functionality for (some) listviews
   - make something for 'overview' page
   - add some paddings/margins to overall designs
   - add colors to designs
@@ -17,3 +15,5 @@ done:
   - MenuView correctly loads CourseView, StudentsView and GradeFormView
   - integrate separate projects
   - make list queries return sorted results
+  - make full proj run on more than 1 laptop
+  - implement filter functionality for (some) listviews

@@ -1,0 +1,25 @@
+1. choice of project
+  - mickey mouse
+  - university project has long db spec list
+  - functionality specs include add/remove studs/profs to course, change course
+    descr, add grades for studs
+
+2. database
+  - faithful implementation of proj descr db specs
+  - show database diagram, explain
+
+3. app
+  - start app
+  - explain menu: three main functionalities: course info tab, student info tab,
+    add/display gradings form
+
+4. code
+  - go into intellij
+  - explain structure (controller, model, db packages)
+  - talk a moment about data service
+  - talk a moment about menu controller; controller switching
+
+5. stuff to do
+  - problems with design adaptiveness between different computers
+  - review the use of containers/panes/etc in javafx
+  - design is very basic
