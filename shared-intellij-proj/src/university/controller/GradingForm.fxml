@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -10,7 +7,7 @@
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="university.controller.GradingForm"
            dividerPositions="0.33f, 0.66f"
-           prefHeight="800" prefWidth="1200">
+           prefHeight="800" prefWidth="1250">
 
     <VBox>
         <HBox>

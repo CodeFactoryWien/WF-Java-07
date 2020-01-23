@@ -6,14 +6,20 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import university.MainB;
 import university.db.DataService;
 import university.model.StudentGrade;
 import university.model.Person;
+
+import java.io.File;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class StudentView {
 
@@ -39,6 +45,11 @@ public class StudentView {
     private JFXButton studentRestoreButton;
     @FXML
     private ImageView studentsImageView;
+
+    Image bambi = new Image("images/bambi.png");
+    Image donald = new Image("images/donald_duck.png");
+    Image white = new Image("images/white.png");
+
     //Listviews
 
     @FXML
@@ -67,12 +78,18 @@ public class StudentView {
             studentSurnameField.setText(newValue.getSurname());
             studentEmailField.setText(newValue.getEmail());
             studentPhoneField.setText(newValue.getPhone());
+            if (studentsListView.getSelectionModel().getSelectedItem().getId() == 1){
+                studentsImageView.setImage(donald);
+            }else if (studentsListView.getSelectionModel().getSelectedItem().getId() == 6){
+                studentsImageView.setImage(bambi);
+            }else{
+                studentsImageView.setImage(white);
+            }
 
             int studentId = studentsListView.getSelectionModel().getSelectedItem().getId();
             try {
                 ResultSet res = db.resultSet("SELECT c.course_title, g.grade FROM gradings g JOIN courses c USING(course_id)\n" +
                         "JOIN students s USING(student_id) WHERE s.student_id = " + studentId);
-
                 ObservableList<StudentGrade> gradings = FXCollections.observableArrayList();
                 while (res.next()) {
                     String courseName = res.getString(1);
@@ -83,7 +100,16 @@ public class StudentView {
             }catch (SQLException e) {
                 e.printStackTrace();
             }
+/*            if (studentId == 1){
+                Image studentProfile = new Image("images/donald_duck.png");
+                studentsImageView = new ImageView(studentProfile);
+            }else if(studentId == 6){
+                Image studentProfile1 = new Image("images/bambi.png");
+                studentsImageView.setImage(studentProfile1);
+            }else{
+                Image studentProfile2 = new Image("images/white.png");
+                studentsImageView.setImage(studentProfile2);
+            }*/
         });
     }
-
 }

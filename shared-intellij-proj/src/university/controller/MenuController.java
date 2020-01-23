@@ -51,7 +51,7 @@ public class MenuController implements Initializable {
             try {
                 if (searchForUser.next()) {
                     FXMLLoader menuViewLoader = new FXMLLoader(getClass().getResource("MenuView.fxml"));
-                    StackPane root = menuViewLoader.load();
+                    Parent root = menuViewLoader.load();
                     MenuController menuViewController = menuViewLoader.getController();
 
                     menuViewController.setDb(db);
@@ -99,7 +99,7 @@ public class MenuController implements Initializable {
     @FXML
     void coursesActionButton(ActionEvent event) throws IOException {
         FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("CourseView.fxml"));
-        SplitPane coursesPane = gcViewLoader.load();
+        Parent coursesPane = gcViewLoader.load();
         CourseView gcViewController = gcViewLoader.getController();
 
         gcViewController.setDb(db);
