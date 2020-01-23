@@ -49,7 +49,7 @@ public class MenuController implements Initializable {
             ResultSet searchForUser = db.resultSet("SELECT * FROM professors WHERE professor_name = '" + firstName + "' AND professor_surname = '" + lastName + "'");
             try {
                 if (searchForUser.next()) {
-                    FXMLLoader menuViewLoader = new FXMLLoader(getClass().getResource("MenuViewAlt.fxml"));
+                    FXMLLoader menuViewLoader = new FXMLLoader(getClass().getResource("MenuView.fxml"));
                     Parent root = menuViewLoader.load();
                     MenuController menuViewController = menuViewLoader.getController();
 
@@ -89,8 +89,8 @@ public class MenuController implements Initializable {
 
     @FXML
     void coursesActionButton(ActionEvent event) throws IOException {
-        FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("CourseViewAlt.fxml"));
-        Pane coursesPane = gcViewLoader.load();
+        FXMLLoader gcViewLoader = new FXMLLoader(getClass().getResource("CourseView.fxml"));
+        Parent coursesPane = gcViewLoader.load();
         CourseView gcViewController = gcViewLoader.getController();
 
         gcViewController.setDb(db);
