@@ -12,8 +12,20 @@
            dividerPositions="0.33f, 0.66f"
            prefHeight="800" prefWidth="1200">
 
-    <ListView fx:id="courseListView"/>
-    <ListView fx:id="studentListView"/>
+    <VBox>
+        <HBox>
+            <TextField fx:id="courseListFilter"/>
+            <Button fx:id="clearCourseFilterBtn">X</Button>
+        </HBox>
+        <ListView fx:id="courseListView" prefHeight="800"/>
+    </VBox>
+    <VBox>
+        <HBox>
+            <TextField fx:id="studListFilter"/>
+            <Button fx:id="clearStudFilterBtn">X</Button>
+        </HBox>
+        <ListView fx:id="studentListView" prefHeight="800"/>
+    </VBox>
     <VBox>
         <GridPane>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0">Selected student: </Label>

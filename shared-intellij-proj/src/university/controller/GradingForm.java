@@ -1,5 +1,8 @@
 package university.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
@@ -11,8 +14,16 @@ import university.model.Grade;
 import university.model.Person;
 
 public class GradingForm {
+    @FXML TextField courseListFilter;
+    FilteredList<Course> filteredCourses;
+    @FXML Button clearCourseFilterBtn;
     @FXML ListView<Course> courseListView;
+
+    @FXML TextField studListFilter;
+    FilteredList<Person> filteredStuds;
+    @FXML Button clearStudFilterBtn;
     @FXML ListView<Person> studentListView;
+
     @FXML TextField studNameField;
     @FXML TextField courseNameField;
     @FXML TextField gradeValueField;
@@ -26,16 +37,47 @@ public class GradingForm {
     public void setDb(DataService db) { this.db = db; }
 
     public void loadData() {
-        var courses = db.getCourses();
-        var students = db.getStudents();
-        courseListView.getItems().setAll(courses);
-        studentListView.getItems().setAll(students);
+        ObservableList<Course> courses = FXCollections.observableArrayList(db.getCourses());
+        filteredCourses = new FilteredList<>(courses, el -> true);
+        courseListView.setItems(filteredCourses);
+
+        ObservableList<Person> studs = FXCollections.observableArrayList(db.getStudents());
+        filteredStuds = new FilteredList<>(studs, el -> true);
+        studentListView.setItems(filteredStuds);
     }
 
     public void wireElements() {
         connectListViewsToForm();
+        connectCourseListFilterToCourseList();
+        connectStudListFilterToCourseList();
         activateFormBtns();
     }
+
+    private void connectCourseListFilterToCourseList() {
+        courseListFilter.textProperty().addListener(change -> {
+            if(courseListFilter.getText().isEmpty()) {
+                filteredCourses.setPredicate(el -> true);
+            } else {
+                filteredCourses.setPredicate(el ->
+                        el.getTitle().toLowerCase().contains(courseListFilter.getText().toLowerCase()));
+            }
+        });
+        clearCourseFilterBtn.setOnAction(e -> courseListFilter.setText(""));
+    }
+
+    private void connectStudListFilterToCourseList() {
+        studListFilter.textProperty().addListener(change -> {
+            if(studListFilter.getText().isEmpty()) {
+                filteredStuds.setPredicate(el -> true);
+            } else {
+                filteredStuds.setPredicate(el ->
+                        el.getName().toLowerCase().contains(studListFilter.getText().toLowerCase()) ||
+                                el.getSurname().toLowerCase().contains(studListFilter.getText().toLowerCase()));
+            }
+        });
+        clearStudFilterBtn.setOnAction(e -> studListFilter.setText(""));
+    }
+
 
     private void connectListViewsToForm() {
         courseListView.getSelectionModel().selectedItemProperty().addListener((x, old, nu) -> {
